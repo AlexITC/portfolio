@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Castillo - Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-xl font-bold text-primary-600 dark:text-primary-400">
+                    Alex Castillo
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+                    <a href="/blog/" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Blog</a>
+                    <a href="#projects" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Projects</a>
+                    <a href="#talks" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Talks</a>
+                    <a href="#testimonials" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Testimonials</a>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="home" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center">
+                    <div class="mb-8">
+                        <img src="https://github.com/AlexITC.png" alt="Alex Castillo" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-primary-500 shadow-lg">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                            Hi, I'm <span class="text-primary-600 dark:text-primary-400">Alex Castillo</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+                            Software Engineer & Blockchain Developer
+                        </p>
+                    </div>
+                    <div class="max-w-4xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <p class="mb-6">
+                            Experienced Software Engineer with 18+ years of programming experience, specializing in high-performance systems and blockchain technologies. Self-taught programmer who learned Assembler by reverse engineering Sony Ericsson mobile device firmware.
+                        </p>
+                        <p class="mb-6">
+                            Skilled in multiple programming languages including Scala, Java, C, Assembler, Ruby, Rust, and JavaScript/TypeScript. I have extensive experience with blockchain development on Bitcoin, Ethereum, and Solana platforms.
+                        </p>
+                        <p class="mb-8">
+                            "I am a human who genuinely cares about helping others, training developers, coaching interns, and supporting customers."
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="#projects" class="bg-primary-600 text-white px-8 py-3 rounded-lg hover:bg-primary-700 transition-colors">View Projects</a>
+                            <a href="#contact" class="border-2 border-primary-600 text-primary-600 dark:text-primary-400 px-8 py-3 rounded-lg hover:bg-primary-50 dark:hover:bg-gray-800 transition-colors">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Blog Posts -->
+        <section id="blog" class="py-16 bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Blog Posts</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg">Thoughts on software engineering, blockchain, and technology</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Building High-Performance Blockchain Applications</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Exploring best practices for developing scalable blockchain applications with modern tools and frameworks...</p>
+                            <a href="/blog/building-high-performance-blockchain-applications.html" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">Read More →</a>
+                        </div>
+                    </article>
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Reverse Engineering Mobile Firmware</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">My journey learning assembler through reverse engineering Sony Ericsson mobile device firmware...</p>
+                            <span class="text-gray-500 dark:text-gray-400 font-semibold">Coming Soon...</span>
+                        </div>
+                    </article>
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">The Future of Self-Hosting</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Why self-hosting infrastructure matters and how to get started with modern deployment strategies...</p>
+                            <span class="text-gray-500 dark:text-gray-400 font-semibold">Coming Soon...</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg">Open source contributions and personal projects</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
+                                <h3 class="text-xl font-bold">twimini-bot</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Gemini Live API bot for interactive conversations with AI assistance and real-time communication capabilities.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">JavaScript</span>
+                                <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">AI</span>
+                            </div>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">View Project →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-blue-400 rounded-full mr-2"></div>
+                                <h3 class="text-xl font-bold">Scala WebApp Template</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive template for building modern web applications with Scala, featuring best practices and production-ready setup.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm rounded-full">Scala</span>
+                                <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Web</span>
+                            </div>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">View Project →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
+                                <h3 class="text-xl font-bold">Cryptocurrency Block Explorer</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Blockchain explorer for multiple cryptocurrencies with real-time transaction monitoring and analytics.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm rounded-full">Blockchain</span>
+                                <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-sm rounded-full">Rust</span>
+                            </div>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">View Project →</a>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
+                                <h3 class="text-xl font-bold">Chrome ScalaJS Template</h3>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Template for building Chrome browser extensions using ScalaJS with modern development workflows.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm rounded-full">Scala</span>
+                                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Browser</span>
+                            </div>
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline font-semibold">View Project →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conference Talks -->
+        <section id="talks" class="py-16 bg-white dark:bg-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Conference Talks</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg">Speaking at international conferences around the world</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                <p class="text-gray-500">Video Coming Soon</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Scaling Blockchain Applications</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">ScalaChain Conference 2023</p>
+                            <p class="text-sm text-gray-500">Berlin, Germany</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                <p class="text-gray-500">Video Coming Soon</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Self-Hosting in the Modern Era</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">DevOps World 2023</p>
+                            <p class="text-sm text-gray-500">San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                        <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                                <p class="text-gray-500">Video Coming Soon</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Functional Programming in Practice</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">Lambda Days 2022</p>
+                            <p class="text-sm text-gray-500">Kraków, Poland</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Testimonials</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg">What colleagues and clients say about working with me</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <div class="mb-4">
+                            <svg class="w-8 h-8 text-primary-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "Alex's expertise in blockchain technology and his ability to explain complex concepts clearly made our project a huge success. His attention to detail and commitment to quality is exceptional."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold">Sarah Johnson</p>
+                                <p class="text-sm text-gray-500">CTO, TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <div class="mb-4">
+                            <svg class="w-8 h-8 text-primary-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "Working with Alex was a game-changer for our development team. His mentorship and deep technical knowledge helped us deliver our most challenging project on time and under budget."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold">Michael Chen</p>
+                                <p class="text-sm text-gray-500">Lead Developer, StartupXYZ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <div class="mb-4">
+                            <svg class="w-8 h-8 text-primary-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                            "Alex's passion for teaching and helping others grow as developers is remarkable. He has an incredible ability to break down complex problems into understandable solutions."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                            <div>
+                                <p class="font-semibold">Emily Rodriguez</p>
+                                <p class="text-sm text-gray-500">Software Engineer, Innovation Labs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 dark:bg-gray-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-gray-300 mb-8">Open to interesting conversations and collaboration opportunities</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://github.com/AlexITC" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    © 2024 Alex Castillo. Built with HTML, Tailwind CSS, and JavaScript.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
