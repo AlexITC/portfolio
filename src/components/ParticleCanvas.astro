@@ -2,7 +2,7 @@
 // Particle Canvas Component
 ---
 
-<canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-60 dark:opacity-40"></canvas>
+<canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-60"></canvas>
 
 <script>
     // Particle System
@@ -79,12 +79,11 @@
         }
         
         drawParticles() {
-            const isDark = document.documentElement.classList.contains('dark');
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             
-            // Set particle and line colors based on theme
-            const particleColor = isDark ? 'rgba(59, 130, 246, 0.6)' : 'rgba(59, 130, 246, 0.4)';
-            const lineColor = isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.08)';
+            // Set particle and line colors for light theme
+            const particleColor = 'rgba(59, 130, 246, 0.4)';
+            const lineColor = 'rgba(59, 130, 246, 0.08)';
             
             // Draw connections
             this.ctx.strokeStyle = lineColor;

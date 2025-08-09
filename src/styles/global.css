@@ -28,18 +28,6 @@
     background: rgba(59, 130, 246, 0.7);
 }
 
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-    background: rgba(59, 130, 246, 0.6);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.8);
-}
 
 /* Custom animations */
 @keyframes fade-in {
@@ -201,9 +189,6 @@
     border-left: 4px solid rgba(59, 130, 246, 0.2);
 }
 
-.dark .prose blockquote {
-    color: rgba(156, 163, 175, 0.8);
-}
 
 .prose ul, .prose ol {
     margin: 1.5rem 0;
@@ -228,16 +213,11 @@
     z-index: -1;
 }
 
-.dark #particleCanvas {
-    opacity: 0.4;
-}
-
 @media (max-width: 768px) {
     #particleCanvas {
         display: none;
     }
 }
-
 /* Accessibility enhancements */
 @media (prefers-reduced-motion: reduce) {
     *,

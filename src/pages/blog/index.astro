@@ -16,9 +16,9 @@ const posts = (await getCollection('blog')).sort(
 		<div class="max-w-7xl mx-auto">
 			<div class="text-center">
 				<h1 class="text-4xl md:text-6xl font-bold mb-4">
-					<span class="text-blue-600 dark:text-blue-400">Blog</span>
+					<span class="text-blue-600">Blog</span>
 				</h1>
-				<p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+				<p class="text-xl md:text-2xl text-gray-600 mb-8">
 					Thoughts on software engineering, blockchain, and technology
 				</p>
 			</div>
@@ -26,11 +26,11 @@ const posts = (await getCollection('blog')).sort(
 	</section>
 
 	<!-- Blog Posts -->
-	<section class="py-16 bg-white dark:bg-gray-800">
+	<section class="py-16 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 				{posts.map((post) => (
-					<article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+					<article class="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
 						{post.data.heroImage && (
 							<div class="aspect-video overflow-hidden">
 								<Image 
@@ -43,18 +43,18 @@ const posts = (await getCollection('blog')).sort(
 							</div>
 						)}
 						<div class="p-6">
-							<div class="text-sm text-blue-600 dark:text-blue-400 font-semibold mb-2">
+							<div class="text-sm text-blue-600 font-semibold mb-2">
 								<FormattedDate date={post.data.pubDate} />
 							</div>
-							<h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">
-								<a href={`/blog/${post.slug}/`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+							<h3 class="text-xl font-bold mb-3 text-gray-900">
+								<a href={`/blog/${post.id}/`} class="hover:text-blue-600 transition-colors">
 									{post.data.title}
 								</a>
 							</h3>
 							{post.data.description && (
-								<p class="text-gray-600 dark:text-gray-300 mb-4">{post.data.description}</p>
+								<p class="text-gray-600 mb-4">{post.data.description}</p>
 							)}
-							<a href={`/blog/${post.slug}/`} class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+							<a href={`/blog/${post.id}/`} class="text-blue-600 hover:underline font-semibold">
 								Read More →
 							</a>
 						</div>
