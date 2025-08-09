@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// Get recent blog posts for featured section
+const posts = (await getCollection('blog'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="mb-8">
+                    <img src="https://github.com/AlexITC.png" alt="Alexis Hernandez" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500 shadow-lg">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                        Hi, I'm <span class="text-blue-600 dark:text-blue-400">Alexis Hernandez</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+                        Software Engineer & Blockchain Developer
+                    </p>
+                </div>
+                <div class="max-w-4xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p class="mb-6">
+                        Experienced Software Engineer with 18+ years of programming experience, specializing in high-performance systems and blockchain technologies. Self-taught programmer who learned Assembler by reverse engineering Sony Ericsson mobile device firmware.
+                    </p>
+                    <p class="mb-6">
+                        Skilled in multiple programming languages including Scala, Java, C, Assembler, Ruby, Rust, and JavaScript/TypeScript. I have extensive experience with blockchain development on Bitcoin, Ethereum, and Solana platforms.
+                    </p>
+                    <p class="mb-8">
+                        "I am a human who genuinely cares about helping others, training developers, coaching interns, and supporting customers."
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#projects" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">View Projects</a>
+                        <a href="#contact" class="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Blog Posts -->
+    <section id="blog" class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Blog Posts</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">Thoughts on software engineering, blockchain, and technology</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                {posts.map((post) => (
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">{post.data.title}</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">{post.data.description}</p>
+                            <a href={`/blog/${post.slug}/`} class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">Read More →</a>
+                        </div>
+                    </article>
+                ))}
+                <!-- Placeholder posts if we don't have 3 yet -->
+                {posts.length < 2 && (
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow opacity-75">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">Reverse Engineering Mobile Firmware</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">My journey learning assembler through reverse engineering Sony Ericsson mobile device firmware...</p>
+                            <span class="text-gray-500 dark:text-gray-400 font-semibold">Coming Soon...</span>
+                        </div>
+                    </article>
+                )}
+                {posts.length < 3 && (
+                    <article class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow opacity-75">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-gray-100">The Future of Self-Hosting</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4">Why self-hosting infrastructure matters and how to get started with modern deployment strategies...</p>
+                            <span class="text-gray-500 dark:text-gray-400 font-semibold">Coming Soon...</span>
+                        </div>
+                    </article>
+                )}
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">Open source contributions and personal projects</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
+                            <h3 class="text-xl font-bold">twimini-bot</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Gemini Live API bot for interactive conversations with AI assistance and real-time communication capabilities.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">JavaScript</span>
+                            <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm rounded-full">AI</span>
+                        </div>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">View Project →</a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-blue-400 rounded-full mr-2"></div>
+                            <h3 class="text-xl font-bold">Scala WebApp Template</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">A comprehensive template for building modern web applications with Scala, featuring best practices and production-ready setup.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm rounded-full">Scala</span>
+                            <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm rounded-full">Web</span>
+                        </div>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">View Project →</a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
+                            <h3 class="text-xl font-bold">Cryptocurrency Block Explorer</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Blockchain explorer for multiple cryptocurrencies with real-time transaction monitoring and analytics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm rounded-full">Blockchain</span>
+                            <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-sm rounded-full">Rust</span>
+                        </div>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">View Project →</a>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
+                            <h3 class="text-xl font-bold">Chrome ScalaJS Template</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Template for building Chrome browser extensions using ScalaJS with modern development workflows.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm rounded-full">Scala</span>
+                            <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full">Browser</span>
+                        </div>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conference Talks -->
+    <section id="talks" class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Conference Talks</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">Speaking at international conferences around the world</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-gray-500">Video Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Scaling Blockchain Applications</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">ScalaChain Conference 2023</p>
+                        <p class="text-sm text-gray-500">Berlin, Germany</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-gray-500">Video Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Self-Hosting in the Modern Era</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">DevOps World 2023</p>
+                        <p class="text-sm text-gray-500">San Francisco, CA</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <div class="text-center">
+                            <svg class="w-16 h-16 text-gray-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-gray-500">Video Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Functional Programming in Practice</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Lambda Days 2022</p>
+                        <p class="text-sm text-gray-500">Kraków, Poland</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Testimonials</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">What colleagues and clients say about working with me</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "Alexis's expertise in blockchain technology and his ability to explain complex concepts clearly made our project a huge success. His attention to detail and commitment to quality is exceptional."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                        <div>
+                            <p class="font-semibold">Sarah Johnson</p>
+                            <p class="text-sm text-gray-500">CTO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "Working with Alexis was a game-changer for our development team. His mentorship and deep technical knowledge helped us deliver our most challenging project on time and under budget."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                        <div>
+                            <p class="font-semibold">Michael Chen</p>
+                            <p class="text-sm text-gray-500">Lead Developer, StartupXYZ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 italic">
+                        "Alexis's passion for teaching and helping others grow as developers is remarkable. He has an incredible ability to break down complex problems into understandable solutions."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 dark:bg-gray-600 rounded-full mr-3"></div>
+                        <div>
+                            <p class="font-semibold">Emily Rodriguez</p>
+                            <p class="text-sm text-gray-500">Software Engineer, Innovation Labs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smooth scrolling script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 80; // Account for fixed header
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</BaseLayout>

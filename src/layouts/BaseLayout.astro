@@ -1,0 +1,60 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ParticleCanvas from '../components/ParticleCanvas.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import '../styles/global.css';
+
+export interface Props {
+	title: string;
+	description?: string;
+	showParticles?: boolean;
+}
+
+const { title, description, showParticles = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+		<!-- Particle Canvas -->
+		{showParticles && <ParticleCanvas />}
+		
+		<!-- Header -->
+		<Header />
+		
+		<!-- Main Content -->
+		<main class="relative z-10">
+			<slot />
+		</main>
+		
+		<!-- Footer -->
+		<Footer />
+		
+		<!-- Theme Toggle Script -->
+		<script>
+			// Dark mode functionality
+			const getThemePreference = () => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			};
+
+			const isDark = getThemePreference() === 'dark';
+			document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+			if (typeof localStorage !== 'undefined') {
+				const observer = new MutationObserver(() => {
+					const isDark = document.documentElement.classList.contains('dark');
+					localStorage.setItem('theme', isDark ? 'dark' : 'light');
+				});
+				observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+			}
+		</script>
+	</body>
+</html>

@@ -1,188 +1,62 @@
-# Alex Castillo - Personal Portfolio & Blog
+# Astro Starter Kit: Blog
 
-A modern, responsive personal portfolio and blog website built with HTML, Tailwind CSS, and vanilla JavaScript. Designed for GitHub Pages deployment with a Jekyll-inspired static blog system.
-
-## 🚀 Features
-
-### Portfolio
-- **Responsive Design:** Mobile-first approach with Tailwind CSS
-- **Dark/Light Mode:** System preference detection with manual toggle
-- **Interactive Particles:** Mouse-following particle animation system
-- **Smooth Animations:** CSS transitions and scroll-based animations
-- **Professional Sections:** Hero, Projects, Talks, Testimonials, Contact
-
-### Blog System
-- **Static HTML Generation:** Jekyll-inspired workflow for GitHub Pages
-- **Clean URLs:** `/blog/` index and `/blog/post-name.html` for individual posts
-- **Markdown Support:** Write in Markdown, publish as HTML
-- **SEO Optimized:** Proper meta tags and semantic HTML
-- **Typography:** Optimized reading experience with prose styling
-
-## 📁 Project Structure
-
-```
-/
-├── index.html                    # Main portfolio page
-├── style.css                     # Custom CSS styles
-├── script.js                     # JavaScript functionality
-├── create-post.js               # Blog post generator tool
-├── README.md                    # This file
-└── /blog/
-    ├── index.html               # Blog listing page
-    ├── first-post.md           # Markdown source (optional)
-    ├── building-high-performance-blockchain-applications.html
-    └── [other-posts].html
+```sh
+npm create astro@latest -- --template blog
 ```
 
-## 🛠️ Blog Workflow
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-### Creating New Posts
+Features:
 
-1. **Generate Post Files:**
-   ```bash
-   node create-post.js "Your Amazing Blog Post Title"
-   ```
-   This creates:
-   - `blog/your-amazing-blog-post-title.md` (Markdown template)
-   - `blog/your-amazing-blog-post-title.html` (HTML template)
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and OpenGraph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
 
-2. **Write Content:**
-   - Edit the `.md` file with your content
-   - Or directly edit the `.html` file for full control
+## 🚀 Project Structure
 
-3. **Update Blog Index:**
-   - Add your new post to `blog/index.html`
-   - Update the featured posts section if needed
+Inside of your Astro project, you'll see the following folders and files:
 
-4. **Update Main Page (Optional):**
-   - Update featured blog posts in `index.html`
-
-### Manual Post Creation
-
-If you prefer not to use the generator:
-
-1. Create `/blog/your-post-name.html`
-2. Copy the structure from an existing post
-3. Update the content, metadata, and navigation
-4. Add to blog index
-
-## 🎨 Customization
-
-### Colors and Theming
-- Primary colors defined in Tailwind config
-- Dark mode classes automatically applied
-- Custom CSS variables in `style.css`
-
-### Content Updates
-- **Profile Picture:** Update GitHub URL in HTML files
-- **Bio Information:** Edit hero section in `index.html`
-- **Projects:** Update project cards with your repositories
-- **Talks:** Add your conference presentations
-- **Testimonials:** Replace with actual client feedback
-
-### Adding New Sections
-1. Add HTML structure to `index.html`
-2. Add corresponding navigation link
-3. Style with Tailwind classes
-4. Add scroll animations if desired
-
-## 🚀 Deployment
-
-### GitHub Pages
-1. Push all files to your GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Choose source: Deploy from branch `main` `/root`
-4. Your site will be available at `https://username.github.io/repository-name`
-
-### Custom Domain
-1. Add a `CNAME` file with your domain name
-2. Configure DNS settings with your domain provider
-3. Enable HTTPS in GitHub Pages settings
-
-## 🔧 Development
-
-### Local Development
-Simply open `index.html` in a browser or use a local server:
-
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js (http-server)
-npx http-server
-
-# Using PHP
-php -S localhost:8000
+```text
+├── public/
+├── src/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
 ```
 
-### Dependencies
-- **Tailwind CSS:** Loaded via CDN
-- **Marked.js:** Not used in current static setup
-- **No build process required:** Everything runs in the browser
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## 📝 Blog Post Format
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-### Markdown Template
-```markdown
----
-title: Your Post Title
-date: 2024-12-01
-author: Alex Castillo
-tags: [tag1, tag2, tag3]
-description: Brief description for SEO
----
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-# Your Post Title
+Any static assets, like images, can be placed in the `public/` directory.
 
-Your content goes here...
+## 🧞 Commands
 
-## Section Header
+All commands are run from the root of the project, from a terminal:
 
-More content...
-```
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-### HTML Structure
-- Semantic HTML5 elements
-- Proper heading hierarchy
-- Meta tags for SEO
-- Responsive images
-- Accessible navigation
+## 👀 Want to learn more?
 
-## 🎯 SEO Optimizations
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
-- Semantic HTML structure
-- Meta descriptions for each page
-- Open Graph tags (can be added)
-- Sitemap generation (manual)
-- Mobile-responsive design
-- Fast loading times
+## Credit
 
-## 🔒 Security & Performance
-
-- No external dependencies beyond CDN
-- Minimal JavaScript footprint
-- Optimized images and assets
-- CSP-friendly inline styles
-- No server-side processing required
-
-## 📊 Analytics Integration
-
-To add analytics, insert your tracking code in the `<head>` section of:
-- `index.html`
-- `blog/index.html`
-- Blog post template in `create-post.js`
-
-## 🤝 Contributing
-
-This is a personal website template, but feel free to:
-- Fork and adapt for your own use
-- Submit bug reports or feature suggestions
-- Share improvements or optimizations
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
----
-
-Built with ❤️ using HTML, Tailwind CSS, and JavaScript. Perfect for developers who want a fast, modern portfolio without the complexity of a full static site generator.
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
