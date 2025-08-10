@@ -229,10 +229,6 @@ import ProfileImage from '../assets/profile.jpg';
         </div>
     </section>
 
-    <!-- Import Swiper styles and script -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <!-- Custom scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -255,8 +251,12 @@ import ProfileImage from '../assets/profile.jpg';
                 });
             });
 
-            // Initialize Swiper for testimonials
-            const swiper = new Swiper('.testimonials-swiper', {
+            // Load Swiper JS and initialize
+            const swiperScript = document.createElement('script');
+            swiperScript.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+            swiperScript.onload = () => {
+                // Initialize Swiper for testimonials
+                const swiper = new Swiper('.testimonials-swiper', {
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
@@ -279,27 +279,30 @@ import ProfileImage from '../assets/profile.jpg';
                 }
             });
 
-            // Handle expandable text functionality
-            const toggles = document.querySelectorAll('.testimonial-toggle');
-            
-            toggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const textElement = toggle.previousElementSibling;
-                    const isExpanded = toggle.getAttribute('data-expanded') === 'true';
-                    const fullText = textElement.getAttribute('data-full-text');
-                    const truncatedText = textElement.getAttribute('data-truncated-text');
-                    
-                    if (isExpanded) {
-                        textElement.textContent = truncatedText;
-                        toggle.textContent = '(...)';
-                        toggle.setAttribute('data-expanded', 'false');
-                    } else {
-                        textElement.textContent = fullText;
-                        toggle.textContent = ' Show less';
-                        toggle.setAttribute('data-expanded', 'true');
-                    }
+                // Handle expandable text functionality
+                const toggles = document.querySelectorAll('.testimonial-toggle');
+                
+                toggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const textElement = toggle.previousElementSibling;
+                        const isExpanded = toggle.getAttribute('data-expanded') === 'true';
+                        const fullText = textElement.getAttribute('data-full-text');
+                        const truncatedText = textElement.getAttribute('data-truncated-text');
+                        
+                        if (isExpanded) {
+                            textElement.textContent = truncatedText;
+                            toggle.textContent = '(...)';
+                            toggle.setAttribute('data-expanded', 'false');
+                        } else {
+                            textElement.textContent = fullText;
+                            toggle.textContent = ' Show less';
+                            toggle.setAttribute('data-expanded', 'true');
+                        }
+                    });
                 });
-            });
+            };
+            document.head.appendChild(swiperScript);
+
         });
     </script>
 </BaseLayout>
