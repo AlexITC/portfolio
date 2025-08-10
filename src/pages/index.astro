@@ -12,6 +12,10 @@ const posts = (await getCollection('blog'))
 const projects = (await getCollection('projects'))
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     .slice(0, 3);
+
+// Get testimonials
+const testimonialsData = await import('../content/testimonials.json');
+const testimonials = testimonialsData.default;
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -193,57 +197,25 @@ const projects = (await getCollection('projects'))
                 <p class="text-gray-300 text-lg">What colleagues and clients say about working with me</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <div class="mb-4">
-                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-6 italic">
-                        "Alexis's expertise in blockchain technology and his ability to explain complex concepts clearly made our project a huge success. His attention to detail and commitment to quality is exceptional."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-                        <div>
-                            <p class="font-semibold">Sarah Johnson</p>
-                            <p class="text-sm text-gray-500">CTO, TechCorp</p>
+                {testimonials.slice(0, 3).map((testimonial) => (
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <div class="mb-4">
+                            <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "{testimonial.description}"
+                        </p>
+                        <div class="flex items-center">
+                            <img src={testimonial.image} alt={testimonial.author} class="w-10 h-10 rounded-full mr-3 object-cover" />
+                            <div>
+                                <p class="font-semibold">{testimonial.author}</p>
+                                <p class="text-sm text-gray-500">{testimonial.position}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <div class="mb-4">
-                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-6 italic">
-                        "Working with Alexis was a game-changer for our development team. His mentorship and deep technical knowledge helped us deliver our most challenging project on time and under budget."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-                        <div>
-                            <p class="font-semibold">Michael Chen</p>
-                            <p class="text-sm text-gray-500">Lead Developer, StartupXYZ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                    <div class="mb-4">
-                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <p class="text-gray-300 mb-6 italic">
-                        "Alexis's passion for teaching and helping others grow as developers is remarkable. He has an incredible ability to break down complex problems into understandable solutions."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
-                        <div>
-                            <p class="font-semibold">Emily Rodriguez</p>
-                            <p class="text-sm text-gray-500">Software Engineer, Innovation Labs</p>
-                        </div>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     </section>
