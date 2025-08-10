@@ -178,26 +178,53 @@ import ProfileImage from '../assets/profile.jpg';
                 <p class="text-gray-300 text-lg">What colleagues and clients say about working with me</p>
                 <a href="/testimonials" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All Testimonials →</a>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                {testimonials.map((testimonial) => (
-                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
-                        <div class="mb-4">
-                            <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <p class="text-gray-300 mb-6 italic">
-                            "{testimonial.body}"
-                        </p>
-                        <div class="flex items-center">
-                            <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-10 h-10 rounded-full mr-3 object-cover" width={40} height={40} />
-                            <div>
-                                <p class="font-semibold">{testimonial.data.author}</p>
-                                <p class="text-sm text-gray-500">{testimonial.data.position}</p>
+            
+            <!-- Carousel Container -->
+            <div class="relative max-w-4xl mx-auto">
+                <div id="testimonials-carousel" class="overflow-hidden">
+                    <div id="testimonials-track" class="flex transition-transform duration-500 ease-in-out">
+                        {allTestimonials.map((testimonial, index) => (
+                            <div class="w-full flex-shrink-0">
+                                <div class="bg-gray-800 rounded-lg p-8 shadow-lg mx-4">
+                                    <div class="mb-6 text-center">
+                                        <svg class="w-10 h-10 text-blue-500 mb-4 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="text-gray-300 mb-8 italic text-lg text-center leading-relaxed whitespace-pre-line">
+                                        "{testimonial.body}"
+                                    </div>
+                                    <div class="flex items-center justify-center">
+                                        <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-12 h-12 rounded-full mr-4 object-cover" width={48} height={48} />
+                                        <div>
+                                            <p class="font-semibold text-white">{testimonial.data.author}</p>
+                                            <p class="text-sm text-gray-400">{testimonial.data.position}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+                
+                <!-- Navigation Controls -->
+                <button id="prev-testimonial" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="next-testimonial" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Dots Indicator -->
+                <div class="flex justify-center mt-6 space-x-2">
+                    {allTestimonials.map((_, index) => (
+                        <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-blue-500 transition-colors" data-index={index}></button>
+                    ))}
+                </div>
             </div>
         </div>
     </section>
@@ -205,6 +232,7 @@ import ProfileImage from '../assets/profile.jpg';
     <!-- Smooth scrolling script -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for anchor links
             const links = document.querySelectorAll('a[href^="#"]');
             
             links.forEach(link => {
@@ -222,6 +250,90 @@ import ProfileImage from '../assets/profile.jpg';
                     }
                 });
             });
+
+            // Testimonials Carousel
+            const track = document.getElementById('testimonials-track');
+            const prevBtn = document.getElementById('prev-testimonial');
+            const nextBtn = document.getElementById('next-testimonial');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            
+            if (track && prevBtn && nextBtn) {
+                let currentIndex = 0;
+                const totalTestimonials = dots.length;
+                let autoPlayInterval;
+
+                // Update carousel position
+                function updateCarousel() {
+                    const translateX = -currentIndex * 100;
+                    track.style.transform = `translateX(${translateX}%)`;
+                    
+                    // Update active dot
+                    dots.forEach((dot, index) => {
+                        if (index === currentIndex) {
+                            dot.classList.add('bg-blue-500');
+                            dot.classList.remove('bg-gray-600');
+                        } else {
+                            dot.classList.add('bg-gray-600');
+                            dot.classList.remove('bg-blue-500');
+                        }
+                    });
+                }
+
+                // Next testimonial
+                function nextTestimonial() {
+                    currentIndex = (currentIndex + 1) % totalTestimonials;
+                    updateCarousel();
+                }
+
+                // Previous testimonial
+                function prevTestimonial() {
+                    currentIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
+                    updateCarousel();
+                }
+
+                // Auto-play functionality
+                function startAutoPlay() {
+                    autoPlayInterval = setInterval(nextTestimonial, 5000);
+                }
+
+                function stopAutoPlay() {
+                    clearInterval(autoPlayInterval);
+                }
+
+                // Event listeners
+                nextBtn.addEventListener('click', () => {
+                    stopAutoPlay();
+                    nextTestimonial();
+                    startAutoPlay();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    stopAutoPlay();
+                    prevTestimonial();
+                    startAutoPlay();
+                });
+
+                // Dot navigation
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        stopAutoPlay();
+                        currentIndex = index;
+                        updateCarousel();
+                        startAutoPlay();
+                    });
+                });
+
+                // Pause auto-play on hover
+                const carousel = document.getElementById('testimonials-carousel');
+                if (carousel) {
+                    carousel.addEventListener('mouseenter', stopAutoPlay);
+                    carousel.addEventListener('mouseleave', startAutoPlay);
+                }
+
+                // Initialize
+                updateCarousel();
+                startAutoPlay();
+            }
         });
     </script>
 </BaseLayout>
