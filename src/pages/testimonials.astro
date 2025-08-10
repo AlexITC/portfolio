@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const testimonialsData = await import('../content/testimonials.json');
+const testimonials = testimonialsData.default;
+---
+
+<BaseLayout title="Testimonials" description="What colleagues and clients say about working with Alexis Hernandez">
+    <section class="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Testimonials</h1>
+                <p class="text-xl text-gray-300">What colleagues and clients say about working with me</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {testimonials.map((testimonial) => (
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="mb-4">
+                            <svg class="w-8 h-8 text-blue-500 mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "{testimonial.description}"
+                        </p>
+                        <div class="flex items-center">
+                            <img src={testimonial.image} alt={testimonial.author} class="w-12 h-12 rounded-full mr-4 object-cover" />
+                            <div>
+                                <p class="font-semibold text-lg">{testimonial.author}</p>
+                                <p class="text-sm text-gray-400">{testimonial.position}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+</BaseLayout>
