@@ -1,5 +1,11 @@
 [
   {
+    "author": "Reena Clifton",
+    "position": "Libertas Tech Services Founder",
+    "image": "/assets/testimonials/placeholder.png",
+    "description": "I am a backend developer and I am creating an ed-tech platform as a side-gig.  I asked Alexis if he could do the front end. I had previously asked someone else to do it and he and his team did a terrible job. Alexis introduced me to the front end dev Saul from Wiringbits. I cannot praise them enough. They literally rescued the project - Saul has an attention for detail, cares about project and delivers a clean and quality solution.  He discusses the requirements with me every evening and every morning I look forward to waking up to a daily update. Alexis is happy to jump on a call whenever I need to have a chat. He is a very calming and reassuring influence. I am so pleased that I found them and I know I have found a team I can work with going into the future. I wouldn't hesitate using Wiringbits again."
+  },
+  {
     "author": "Nick Hitch",
     "position": "CALENDA Co-Founder",
     "image": "https://wiringbits.net/assets/home/testimonials/reviewer/placeholder.png",
@@ -12,63 +18,81 @@
     "description": "Alexis played a pivotal role in the successful migration of our web3 application, which led to substantial cost savings and a simplification of our overall infrastructure. Throughout the project, Alexis demonstrated exceptional responsiveness and clear communication, ensuring that the project status and timelines were always transparent and easily understandable. His extensive experience proved invaluable as it enabled us to address a variety of issues related to blockchain integrations across multiple vendors. Alexis consistently proposed solutions that were both practical and innovative, illustrating his commitment to our project's success above his own billable hours. I highly recommend Alexis and look forward to working with him again in the future."
   },
   {
-    "author": "Matt Gaidica",
-    "position": "Founder & CEO at Leighton Interactive",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/matt-gaidica.jpg",
-    "description": "Alexis was the perfect fit for our complex Scala project. His deep expertise and collaborative approach made him feel like a true extension of our team. What impressed me most was his proactive communication and genuine commitment to our project's success. He consistently delivered high-quality work on time and was always available to discuss solutions or address any concerns. I wouldn't hesitate to work with Alexis again and highly recommend him to any team looking for exceptional Scala development expertise."
+    "author": "Brian Sage",
+    "position": "Founder & CEO at Sage Digital",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/brian-sage.png",
+    "description": "Alexis was invaluable to our project, but, more crucially, he was willing to go the extra mile with everything we needed help with. His ability to quickly understand our project's needs and then execute helped us rescue an important blockchain project for our client, and we couldn't have done it without his help and great attitude."
   },
   {
-    "author": "Cristian Velasco",
-    "position": "QA Automation Manager at globant",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/cristian-velasco.jpg",
-    "description": "I was looking for a freelancer to help me with mobile automation tests with React Native and Alexis was perfect for the job. He did an excellent job building the foundation for our automation tests, creating helper functions and examples that would allow our team to continue with the mobile automation. Besides his technical knowledge, he provided guidance and documentation of best practices. Alexis is a great developer and person to work with."
+    "author": "Alex Szilagyi",
+    "position": "Founder at TechStackApps",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/alex-szilagyi.jpeg",
+    "description": "Alexis and his expertise offered us great help in terms of Scala development and debugging! We've managed to achieve great results in crazy short amount of time! I would recommend it to anyone which needs an expert in Scala development! Since we've met Alexis we kept the collaboration very close and we count on him as one of our valuable colleague!"
   },
   {
-    "author": "Carlos Cardona",
-    "position": "Software Engineer at globant",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/carlos-cardona.jpg",
-    "description": "I had the opportunity to work with Alexis on many different projects. He is highly dedicated to his work, always willing to help others, and has a great attitude towards learning new technologies. I especially highlight his ability to adapt to the needs of each project and his great ability to work as a team. Without a doubt I would work with him again."
+    "author": "Bowen C",
+    "position": "Non-profit webapp founder",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/placeholder.png",
+    "description": "Alexis is a true lifesaver! After my web developer left our project, I hired a new developer who turned out to be a disaster and ended up deleting our site from the server. Although we permanently lost our user data, I fortunately found Alexis, who was able to restore our website from the repository on GitLab in a matter of a few hours. And because I told Alexis that it was urgent, he was able to do it on the weekend no less. I’ve continued to work with Alexis since then, as I find him to be very straightforward and honest in his communications with me."
   },
   {
-    "author": "Daniel Ciocirlan",
-    "position": "Software Engineer, Scala Instructor, Content Creator",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/daniel-ciocirlan.jpg",
-    "description": "Alexis helped me with the development of a web application for Rock the JVM. He took ownership of the project, made the right technical decisions and delivered a working product with minimal supervision. Super responsible, great to work with."
+    "author": "Mark Griffin",
+    "position": "UX Foundry Product Manager, Atala PRISM, IOHK",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/mark-griffin.jpeg",
+    "description": "Cesar from Wiringbits took over the Atala PRISM Browser Wallet development, a key tool that sits on top our Atala PRISM SDK, improving its quality and user experience considerably. Cesar also created our Credentials Verification Portal which will be come a core tool for the PRISM ecosystem. Cesar delivered quality code on time and also provided advice on new features and functionality that would provide value to end-users. I would be happy to recommend Wiringbits as a company to work with."
   },
   {
-    "author": "Jesus Rodriguez",
-    "position": "Sofware Engineer at globant",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/jesus-rodriguez.jpg",
-    "description": "Having worked with Alexis on various projects, I can confidently say he is an exceptional developer. His mastery of multiple technologies, combined with his willingness to mentor and support team members, makes him an invaluable asset. Alexis consistently delivers high-quality solutions while maintaining clear communication throughout the development process."
+    "author": "Sang Lee",
+    "position": "Engineering Manager at CircleIn",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/sang-lee.jpeg",
+    "description": "Alexis and his team at Wiringbits were super productive from day one. They helped us build new features, bring up potential issues with possible solutions, and improved our code quality and development process. They were always available to talk when needed and communication was great. We would definitely work with them again in the future if we could."
   },
   {
-    "author": "Yaroslav Tkachenko",
-    "position": "Staff Software Engineer at Coinbase",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/yaroslav-tkachenko.jpg",
-    "description": "I've had the pleasure of working with Alexis on two different projects, and I can confidently say he's one of the most skilled and reliable developers I've encountered. His expertise in Scala is exceptional, but what truly sets him apart is his collaborative approach and excellent communication skills. Alexis has a unique ability to understand complex requirements quickly and translate them into efficient, maintainable code. He's always proactive in suggesting improvements and is incredibly responsive to feedback. Working with Alexis feels like having a senior developer as part of your core team. I wouldn't hesitate to recommend him for any challenging software development project."
+    "author": "Michael Bruny-Groth",
+    "position": "Logo Package Founder",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/michael-bruny.jpg",
+    "description": "Alexis at Wiringbits has assembled a great team of development talent. Our project included web app development and niche Adobe extension development. We were delighted with the quality of service we received and would not hesitate to recommend Wiringbits for any web or software development."
   },
   {
-    "author": "David McDonald",
-    "position": "Senior Director of Web Systems at Knak",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/david-mcdonald.jpg",
-    "description": "Alexis provided exceptional development services for our complex web application project. His deep technical expertise, combined with his ability to understand our business requirements, resulted in a solution that exceeded our expectations. Throughout the project, Alexis demonstrated remarkable problem-solving skills and maintained excellent communication, keeping us informed at every step. His code quality is outstanding, and he delivered everything on time. I highly recommend Alexis for any development project requiring both technical excellence and professional reliability."
+    "author": "Cesar Diaz",
+    "position": "Bowhead Health CTO",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/cesar-diaz.jpg",
+    "description": "Wiringbits mobile development service was super helpful, they allowed us to extend the team in a very short time. Their availability to support us exceeded our expectations, they were able to add redundancy to the team in an emergency case, additionally they were always in constant communication with the Bowhead team in a professional and friendly way."
   },
   {
-    "author": "Andy Brewer",
-    "position": "Chief Technology Officer at Knak",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/andy-brewer.jpg",
-    "description": "Alexis was instrumental in helping us build and scale our platform. His expertise in full-stack development, particularly with Scala and modern web technologies, allowed us to deliver features faster than we initially projected. What impressed me most was his ability to jump into our existing codebase, understand our architecture, and immediately start contributing meaningful improvements. Alexis is not just a skilled developer; he's a thoughtful engineer who considers the long-term maintainability and scalability of the solutions he builds. I would definitely work with him again."
+    "author": "Ilia Podavalkin",
+    "position": "CEO at Scalamandra",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/ilia-podavalkin.jpg",
+    "description": "My team inherited a project created by Wiringbits, which was a smooth handover, the project was nicely documented and organized that it was simple for my team to continue working on it."
   },
   {
-    "author": "Spencer Norman",
-    "position": "Senior Software Engineer at Onfido",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/spencer-norman.jpg",
-    "description": "I worked with Alexis on a challenging blockchain integration project, and his expertise was evident from day one. He not only delivered excellent code but also provided valuable insights that helped us avoid potential pitfalls. Alexis has a rare combination of deep technical knowledge and practical business understanding. His ability to explain complex technical concepts to non-technical stakeholders was particularly valuable. He's reliable, professional, and delivers quality work consistently."
+    "author": "Phillip",
+    "position": "Manager PM IT Consulting at Hydranet",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/hydra-net.jpg",
+    "description": "Alex and his team were tasked with developing several complex core applications for a crypto project, including a blockchain explorer, a public order book and a layer 2 channel rental service. Besides the highly professional implementation, i would like to emphasise the communication and availability of everyone involved, which went far beyond what was expected."
   },
   {
-    "author": "Farid Zakaria",
-    "position": "Senior Software Engineer at Google",
-    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/farid-zakaria.jpg",
-    "description": "Alexis joined our team during a critical phase of our project and immediately made a positive impact. His strong background in functional programming and system architecture helped us resolve several complex technical challenges. What stands out about Alexis is his methodical approach to problem-solving and his commitment to writing clean, well-tested code. He's also an excellent mentor – several junior developers on our team benefited greatly from his guidance. I would gladly work with Alexis again on future projects."
+    "author": "John Ro",
+    "position": "SwanFinance CEO",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/john-ro.jpeg",
+    "description": "Alex and his team were super helpful and professional in helping us to fix issues with our existing platform -built by previous developers- They were able to pinpoint the issues quickly and provide the fixes in an efficient manner. They were also very quick with their responses whenever I had questions or inquiries. I highly recommend Alex and his team."
+  },
+  {
+    "author": "Tim Payne",
+    "position": "Boardrs CEO",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/boardrs.jpg",
+    "description": "Alexis and his team were highly professional, quick to respond to any questions, provided considered solutions and delivered on time. Wiringbits simplified our application deployment, completed numerous frontend tasks to an exact specification, offered precise architectural solutions to code and communicted seamlessly with our team. I highly recommend their work ethic and approach and will definitely work with them in the future. Thank you Wiringbits!"
+  },
+  {
+    "author": "Rick",
+    "position": "Project Manager at Guide University",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/guide-university.jpg",
+    "description": "Alex has been essential to our workflow process, his tooling has brought major improvements both internal with dev ops and external when showcasing clients and partners. Him and his team are readily available for support, and have in depth knowledge of all stages of development. Having worked with him on early architecture, final UX delivery and highly technical troubleshooting, I highly recommend his team for any stage of your project"
+  },
+  {
+    "author": "Brittney Blum",
+    "position": "Resource Manager at Burwood Group",
+    "image": "https://wiringbits.net/assets/home/testimonials/reviewer/brittney-blum.jpeg",
+    "description": "Alexis is very knowledgeable and a pleasure to work with. Alexis took time to explain why and code quality is always very high. Would hire again."
   }
 ]
