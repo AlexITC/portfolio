@@ -18,8 +18,7 @@ const projects = (await getCollection('projects'))
 const allTestimonials = await getCollection('testimonials');
 // Shuffle and select 3 random testimonials
 const testimonials = allTestimonials
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+    .sort(() => Math.random() - 0.5);
 
 
 import ProfileImage from '../assets/profile.jpg';
@@ -182,7 +181,7 @@ import ProfileImage from '../assets/profile.jpg';
             <!-- Swiper Container -->
             <div class="swiper testimonials-swiper max-w-4xl mx-auto">
                 <div class="swiper-wrapper">
-                    {allTestimonials.map((testimonial, index) => {
+                    {testimonials.map((testimonial, index) => {
                         const fullText = testimonial.body;
                         const isLong = fullText.length > 200;
                         const truncatedText = isLong ? fullText.substring(0, 200).trim() : fullText;
