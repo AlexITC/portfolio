@@ -7,6 +7,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 const posts = (await getCollection('blog'))
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     .slice(0, 3);
+
+// Get recent projects for featured section
+const projects = (await getCollection('projects'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -48,6 +53,7 @@ const posts = (await getCollection('blog'))
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Blog Posts</h2>
                 <p class="text-gray-300 text-lg">Thoughts on software engineering, blockchain, and technology</p>
+                <a href="/blog" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All Posts →</a>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 {posts.map((post) => (
@@ -88,64 +94,36 @@ const posts = (await getCollection('blog'))
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
                 <p class="text-gray-300 text-lg">Open source contributions and personal projects</p>
+                <a href="/projects" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All Projects →</a>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
-                            <h3 class="text-xl font-bold">twimini-bot</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                    <article class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-100">{project.data.title}</h3>
+                            <p class="text-gray-300 mb-4">{project.data.description}</p>
+                            <a href={`/projects/${project.id}/`} class="text-blue-400 hover:underline font-semibold">View Project →</a>
                         </div>
-                        <p class="text-gray-300 mb-4">Gemini Live API bot for interactive conversations with AI assistance and real-time communication capabilities.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">AI</span>
+                    </article>
+                ))}
+                {projects.length < 2 && (
+                    <article class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow opacity-75">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-100">Cryptocurrency Block Explorer</h3>
+                            <p class="text-gray-300 mb-4">Blockchain explorer for multiple cryptocurrencies with real-time transaction monitoring and analytics...</p>
+                            <span class="text-gray-500 font-semibold">Coming Soon...</span>
                         </div>
-                        <a href="#" class="text-blue-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-3 h-3 bg-blue-400 rounded-full mr-2"></div>
-                            <h3 class="text-xl font-bold">Scala WebApp Template</h3>
+                    </article>
+                )}
+                {projects.length < 3 && (
+                    <article class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow opacity-75">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3 text-gray-100">Chrome ScalaJS Template</h3>
+                            <p class="text-gray-300 mb-4">Template for building Chrome browser extensions using ScalaJS with modern development workflows...</p>
+                            <span class="text-gray-500 font-semibold">Coming Soon...</span>
                         </div>
-                        <p class="text-gray-300 mb-4">A comprehensive template for building modern web applications with Scala, featuring best practices and production-ready setup.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Scala</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">Web</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></div>
-                            <h3 class="text-xl font-bold">Cryptocurrency Block Explorer</h3>
-                        </div>
-                        <p class="text-gray-300 mb-4">Blockchain explorer for multiple cryptocurrencies with real-time transaction monitoring and analytics.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full">Blockchain</span>
-                            <span class="px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">Rust</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
-                            <h3 class="text-xl font-bold">Chrome ScalaJS Template</h3>
-                        </div>
-                        <p class="text-gray-300 mb-4">Template for building Chrome browser extensions using ScalaJS with modern development workflows.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">Scala</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Browser</span>
-                        </div>
-                        <a href="#" class="text-blue-400 hover:underline font-semibold">View Project →</a>
-                    </div>
-                </div>
+                    </article>
+                )}
             </div>
         </div>
     </section>

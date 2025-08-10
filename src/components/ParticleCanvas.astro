@@ -34,7 +34,7 @@
                     y: Math.random() * this.canvas.height,
                     vx: (Math.random() - 0.5) * 0.5,
                     vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 2 + 1
+                    size: Math.random() * 8 + 4
                 });
             }
         }
@@ -81,9 +81,9 @@
         drawParticles() {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             
-            // Set particle and line colors for dark theme
-            const particleColor = 'rgba(59, 130, 246, 0.6)';
-            const lineColor = 'rgba(59, 130, 246, 0.1)';
+            // Set particle and line colors for dark theme with better contrast
+            const particleColor = 'rgba(96, 165, 250, 0.9)';
+            const lineColor = 'rgba(96, 165, 250, 0.3)';
             
             // Draw connections
             this.ctx.strokeStyle = lineColor;
