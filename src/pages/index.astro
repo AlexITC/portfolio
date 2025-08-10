@@ -190,11 +190,7 @@ import ProfileImage from '../assets/profile.jpg';
                             "{testimonial.body}"
                         </p>
                         <div class="flex items-center">
-                            {typeof testimonial.data.image === 'string' && testimonial.data.image.startsWith('http') ? (
-                                <img src={testimonial.data.image} alt={testimonial.data.author} class="w-10 h-10 rounded-full mr-3 object-cover" />
-                            ) : (
-                                <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-10 h-10 rounded-full mr-3 object-cover" width={40} height={40} />
-                            )}
+                            <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-10 h-10 rounded-full mr-3 object-cover" width={40} height={40} />
                             <div>
                                 <p class="font-semibold">{testimonial.data.author}</p>
                                 <p class="text-sm text-gray-500">{testimonial.data.position}</p>
