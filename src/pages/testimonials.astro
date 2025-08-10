@@ -26,11 +26,7 @@ const testimonials = await getCollection('testimonials');
                             "{testimonial.body}"
                         </p>
                         <div class="flex items-center">
-                            {typeof testimonial.data.image === 'string' && testimonial.data.image.startsWith('http') ? (
-                                <img src={testimonial.data.image} alt={testimonial.data.author} class="w-12 h-12 rounded-full mr-4 object-cover" />
-                            ) : (
-                                <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-12 h-12 rounded-full mr-4 object-cover" width={48} height={48} />
-                            )}
+                            <Image src={testimonial.data.image} alt={testimonial.data.author} class="w-12 h-12 rounded-full mr-4 object-cover" width={48} height={48} />
                             <div>
                                 <p class="font-semibold text-lg">{testimonial.data.author}</p>
                                 <p class="text-sm text-gray-400">{testimonial.data.position}</p>

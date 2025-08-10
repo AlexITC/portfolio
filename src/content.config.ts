@@ -39,4 +39,21 @@ const projects = defineCollection({
 		}),
 });
 
-export const collections = { blog, projects };
+
+const testimonials = defineCollection({
+	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	loader: glob({ 
+		base: './src/content/testimonials', 
+		pattern: '**/*.{md,mdx}',
+		generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, '')
+	}),
+	// Type-check frontmatter using a schema
+	schema: ({ image }) =>
+		z.object({
+			author: z.string(),
+			position: z.string(),
+			image: image(),
+		}),
+});
+
+export const collections = { blog, projects, testimonials };
