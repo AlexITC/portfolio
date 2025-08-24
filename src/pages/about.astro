@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/BlogPost.astro";
+
+import ProfileImage from "../assets/profile.jpg";
+---
+
+<Layout
+  title="About Me"
+  description="Details about Alexis Hernandez"
+  pubDate={new Date("August 08 2025")}
+  heroImage={ProfileImage}
+>
+  <p>
+    Welcome to my personal website, where I write mostly about technical stuff.
+  </p>
+
+  <section>
+    <h3><strong>About Me</strong></h3>
+    <p>
+      I got into programming the hard way; learning Assembler by myself to
+      reverse engineer the firmware from Sony Ericsson mobile devices in an
+      environment with no one to ask for help. Since then, I have been in love
+      with programming and I have worked with a lot of programming languages and
+      technologies.
+    </p>
+    <p>By now, I have been <strong>Programming for 18+ years</strong> where:</p>
+    <ul>
+      <li>
+        I have worked with many programming languages (Scala, Java, C,
+        Assembler, Ruby, Rust, JavaScript/TypeScript),
+      </li>
+      <li>
+        I come from the era where jQuery's, Java Applets, J2ME, and Java Server
+        Pages were normal; evolving with the ecosystem (yes, even Blockchain and
+        AI).
+      </li>
+      <li>
+        I have self-hosted many services personally and professionally,
+        including web servers to SMTP servers.
+      </li>
+      <li>
+        I have worked extensibely with Blockchain (on Self-Sovereign Identity
+        and cryptocurrencies - Bitcoin, Ethereum, Solana), building/designing
+        protocols, self-hosting infrastructure (like bitcoind), and, indexing
+        its data.
+      </li>
+      <li>
+        I have spoke in multiple international conferences from the United
+        Kingdom, Poland, France, Spain, and, Mexico.
+      </li>
+      <li>
+        While I'm familiar with all the necessary details to launch products and
+        create a business, I have failed at the sales process multiple times.
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3><strong>Specific projects</strong></h3>
+    <ul>
+      <li>
+        I built <a href="https://github.com/AlexITC/twimini-bot">twimini-bot</a
+        >: A bot connecting Gemini Live API to voice calls through Twilio:
+      </li>
+      <li>
+        I contributed considerably to the <a
+          href="https://github.com/broadinstitute/cromwell/tree/develop/supportedBackends/google/batch/src"
+          >GCP Batch backend</a
+        >
+        <a href="https://cromwell.readthedocs.io/en/latest/backends/GCPBatch/"
+          >Cromwell</a
+        >.
+      </li>
+      <li>
+        I handled the forking process from the <a href="https://snowplow.io/"
+          >Snowplow</a
+        > components into <a href="https://github.com/opensnowcat"
+          >OpenSnowcat</a
+        > after Snowplow's license change.
+      </li>
+      <li>
+        I have restored many legacy service like <a
+          href="https://github.com/twitter-archive/kestrel">Kestrel</a
+        > from 2009, which is detailed in this talk: <a
+          href="https://www.youtube.com/watch?v=SJxEXAkxD3I"
+          >Welcome to Scala 2.7.7... in 2024</a
+        >
+      </li>
+      <li>
+        I have worked extensively with Scala where I created a template for
+        building fullstack apps with Scala and Scala.js: <a
+          href="https://github.com/wiringbits/scala-webapp-template"
+          >scala-webapp-template</a
+        >.
+      </li>
+      <li>
+        I built a cryptocurrency block explorer supporting Bitcoin + its forks,
+        when I maintained this, it had a 2TB postgres database just for Bitcoin
+        (but it indexed multiple coins): <a
+          href="https://github.com/wiringbits/block-explorer">block-explorer</a
+        >.
+      </li>
+      <li>
+        I used to work with Browser Extensions, then, I created a template: <a
+          href="https://github.com/AlexITC/chrome-scalajs-template"
+          >chrome-scalajs-template</a
+        >.
+      </li>
+    </ul>
+  </section>
+</Layout>
