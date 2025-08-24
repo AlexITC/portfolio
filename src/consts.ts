@@ -4,3 +4,4 @@
 export const SITE_TITLE = "Alexis Hernandez";
 export const SITE_DESCRIPTION = "My personal website";
 export const SITE_AUTHOR = "Alexis Hernandez";
+export const AUTHOR_EMAIL = "alexis@alexitc.com";
