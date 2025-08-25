@@ -9,7 +9,13 @@ type Props = CollectionEntry<"blog">["data"];
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} showParticles={false}>
+<BaseLayout
+  title={title}
+  description={description}
+  showParticles={false}
+  image={heroImage}
+  ogType="article"
+>
   <!-- Blog Post Header -->
   <section class="px-4 pt-20 pb-8 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-4xl">

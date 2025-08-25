@@ -15,7 +15,7 @@ While Gemini Live API is available through the [google-genai](https://cloud.goog
 
 If you go down this path, you will quickly realize that many of the docs do not have examples for Java, and, the API does not provide a nice experience.
 
-I could have gone the usual way and pick Python which would have allowed me to run my experiments in a considerably shorter time, instead, I have decided to build something others can reuse in Scala with the hope see more Scala AI experiments. 
+I could have gone the usual way and pick Python which would have allowed me to run my experiments in a considerably shorter time, instead, I have decided to build something others can reuse in Scala with the hope see more Scala AI experiments.
 
 The first time I got to use Gemini SDK, I created a few Scala abstractions which were difficult to use and maintain, gladly, I have got this to a decent shape that can be wrapped into a library.
 
@@ -103,7 +103,6 @@ This is how to define a function that terminates the process when Gemini decides
     )
   }
 ```
-
 
 ```shell
 # Try it with:
