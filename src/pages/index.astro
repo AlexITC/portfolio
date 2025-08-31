@@ -4,10 +4,8 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
-// Get recent blog posts for featured section
-const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+// Get blog posts for featured section (all of them)
+const posts = (await getCollection("blog")).sort(() => Math.random() - 0.5);
 
 // Get recent projects for featured section
 const projects = (await getCollection("projects"))
@@ -69,28 +67,73 @@ import ProfileImage from "../assets/profile.jpg";
   </section>
 
   <!-- Featured Blog Posts -->
-  <!-- TODO
-    <section id="blog" class="py-16 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Featured Blog Posts</h2>
-                <p class="text-gray-300 text-lg"></p>
-                <a href="/blog" class="inline-block mt-4 text-blue-400 hover:text-blue-300 font-semibold transition-colors">View All →</a>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                {posts.map((post) => (
-                    <article class="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-gray-100">{post.data.title}</h3>
-                            <p class="text-gray-300 mb-4">{post.data.description}</p>
-                            <a href={`/blog/${post.id}/`} class="text-blue-400 hover:underline font-semibold">Read More →</a>
-                        </div>
-                    </article>
-                ))}
-            </div>
+  <section id="blog" class="bg-gray-800 py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 text-center">
+        <h2 class="mb-4 text-3xl font-bold md:text-4xl">Featured Blog Posts</h2>
+        <p class="text-lg text-gray-300">
+          Latest insights and technical articles
+        </p>
+        <a
+          href="/blog"
+          class="mt-4 inline-block font-semibold text-blue-400 transition-colors hover:text-blue-300"
+          >View All →</a
+        >
+      </div>
+      <div class="swiper blogposts-swiper">
+        <div class="swiper-wrapper">
+          {
+            posts.map((post) => (
+              <div class="swiper-slide">
+                <article class="h-full overflow-hidden rounded-lg bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
+                  {post.data.heroImage && (
+                    <div class="aspect-video overflow-hidden">
+                      <Image
+                        width={720}
+                        height={360}
+                        src={post.data.heroImage}
+                        alt={post.data.title}
+                        class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div class="p-6">
+                    <h3 class="mb-3 text-xl font-bold text-gray-100">
+                      <a
+                        href={`/blog/${post.id}/`}
+                        class="transition-colors hover:text-blue-400"
+                      >
+                        {post.data.title}
+                      </a>
+                    </h3>
+                    <p class="mb-4 text-gray-300">{post.data.description}</p>
+                    <a
+                      href={`/blog/${post.id}/`}
+                      class="font-semibold text-blue-400 hover:underline"
+                    >
+                      Read More →
+                    </a>
+                  </div>
+                </article>
+              </div>
+            ))
+          }
         </div>
-    </section>
-    -->
+        <!-- Controls below to avoid overlapping cards -->
+        <div class="mt-6 flex items-center justify-between gap-4">
+          <div
+            class="swiper-button-prev !static !text-blue-400 after:!text-2xl"
+          >
+          </div>
+          <div class="swiper-pagination flex-1"></div>
+          <div
+            class="swiper-button-next !static !text-blue-400 after:!text-2xl"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Projects Section -->
   <!-- TODO
@@ -318,13 +361,48 @@ import ProfileImage from "../assets/profile.jpg";
         });
       });
 
-      // Load Swiper JS and initialize
+      // Tabs for services (no external deps)
+      const serviceButtons = document.querySelectorAll<HTMLButtonElement>(
+        "[data-service-button]",
+      );
+      const servicePanels = document.querySelectorAll<HTMLElement>(
+        "[data-service-panel]",
+      );
+      const activateService = (id: string) => {
+        serviceButtons.forEach((btn) => {
+          const active = btn.getAttribute("data-service-button") === id;
+          btn.setAttribute("aria-selected", active ? "true" : "false");
+          btn.classList.toggle("border-blue-500", active);
+          btn.classList.toggle("text-white", active);
+        });
+        servicePanels.forEach((panel) => {
+          const show = panel.getAttribute("data-service-panel") === id;
+          panel.classList.toggle("hidden", !show);
+        });
+      };
+      // Default selection
+      const firstBtn = document.querySelector<HTMLButtonElement>(
+        "[data-service-button]",
+      );
+      if (firstBtn) {
+        const id = firstBtn.getAttribute("data-service-button");
+        if (id) activateService(id);
+      }
+      serviceButtons.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-service-button");
+          if (id) activateService(id);
+        }),
+      );
+
+      // Load Swiper JS and initialize (for testimonials/blog only)
       const swiperScript = document.createElement("script");
       swiperScript.src =
         "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
       swiperScript.onload = () => {
-        // Initialize Swiper for testimonials
-        const swiper = new Swiper(".testimonials-swiper", {
+        // Testimonials Swiper
+        // @ts-ignore - Swiper provided by CDN
+        const testimonialsSwiper = new Swiper(".testimonials-swiper", {
           slidesPerView: 1,
           spaceBetween: 30,
           loop: true,
@@ -333,17 +411,40 @@ import ProfileImage from "../assets/profile.jpg";
             disableOnInteraction: false,
           },
           pagination: {
-            el: ".swiper-pagination",
+            el: ".testimonials-swiper .swiper-pagination",
             clickable: true,
           },
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".testimonials-swiper .swiper-button-next",
+            prevEl: ".testimonials-swiper .swiper-button-prev",
           },
           breakpoints: {
-            768: {
-              slidesPerView: 1,
-            },
+            768: { slidesPerView: 1 },
+          },
+        });
+
+        // Blog posts Swiper
+        // @ts-ignore - Swiper provided by CDN
+        const blogSwiper = new Swiper(".blogposts-swiper", {
+          slidesPerView: 1,
+          spaceBetween: 16,
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".blogposts-swiper .swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".blogposts-swiper .swiper-button-next",
+            prevEl: ".blogposts-swiper .swiper-button-prev",
+          },
+          breakpoints: {
+            640: { slidesPerView: 1.1, spaceBetween: 20 },
+            768: { slidesPerView: 2, spaceBetween: 24 },
+            1024: { slidesPerView: 3, spaceBetween: 24 },
           },
         });
 
@@ -352,12 +453,13 @@ import ProfileImage from "../assets/profile.jpg";
 
         toggles.forEach((toggle) => {
           toggle.addEventListener("click", () => {
-            const textElement = toggle.previousElementSibling;
+            const textElement =
+              toggle.previousElementSibling as HTMLElement | null;
+            if (!textElement) return;
             const isExpanded = toggle.getAttribute("data-expanded") === "true";
-            const fullText = textElement.getAttribute("data-full-text");
-            const truncatedText = textElement.getAttribute(
-              "data-truncated-text",
-            );
+            const fullText = textElement.getAttribute("data-full-text") || "";
+            const truncatedText =
+              textElement.getAttribute("data-truncated-text") || "";
 
             if (isExpanded) {
               textElement.textContent = truncatedText;
