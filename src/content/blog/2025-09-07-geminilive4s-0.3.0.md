@@ -18,16 +18,15 @@ Let's dive into them.
 
 Imagine that you are building a support agent phone line, typically, as long as the call is connected, you would hear the sound from the agent to explain you what's going on. Still, Gemini has to wait for messages before speaking. Yes, even if there goes 30 seconds with no input, Gemini will wait patiently.
 
-Now, setting `geminiMustSpeakFirst = true` causes Gemini to start the conversation, this is done by sending a `Hello` message automatically after starting the conversation, this simple trick has worked surprisignly well: 
+Now, setting `geminiMustSpeakFirst = true` causes Gemini to start the conversation, this is done by sending a `Hello` message automatically after starting the conversation, this simple trick has worked surprisignly well:
 
 ```scala
 gemini.conversationPipe(geminiMustSpeakFirst = true)
 ```
 
-
 ### Manual voice activity
 
-Gemini has Voice Activity Detection enabled by default which means that Gemini stops speaking when it detects that the user is speaking 
+Gemini has Voice Activity Detection enabled by default which means that Gemini stops speaking when it detects that the user is speaking
 (see [Change voice activity detection settings](https://cloud.google.com/vertex-ai/generative-ai/docs/live-api/streamed-conversations#voice-activity-detection)), still, there could be scenarios where this needs to be handled outside of Gemini, which can be done by setting `disableAutomaticActivityDetection = true`:
 
 ```scala
@@ -66,8 +65,6 @@ This also requires listening to Gemini output events for the `turnComplete` flag
 
 This snippet is part of a new example where the user signals that it is done speaking by pressing `Enter`: [TakeManualTurns.scala](https://github.com/AlexITC/geminilive4s/blob/f3aba11e0c6bd0995ad70253e50c42182063137d/examples/TakeManualTurns.scala)
 
-
-
 ```shell
 ✅ Connected to Gemini Live API
 Microphone recording started...
@@ -92,6 +89,7 @@ Sending wake up signal
 ```
 
 ### Bonus
+
 With these changes, it is possible to put Gemini on both sides, here they are discussing about Laminar vs Slinky for Scala.js:
 
 [laminar-vs-slinky.mp3](/posts/geminilive4s-0-3-0/laminar-vs-slinky.mp3)
