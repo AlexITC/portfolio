@@ -17,6 +17,8 @@ const blog = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       heroImage: image().optional(),
+      permalink: z.string().optional(),
+      categories: z.array(z.string()).optional(),
     }),
 });
 
@@ -28,14 +30,22 @@ const projects = defineCollection({
     generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, ""),
   }),
   // Type-check frontmatter using a schema
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
-      title: z.string(),
-      description: z.string(),
-      // Transform string to Date object
-      pubDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      heroImage: image().optional(),
+      name: z.string(),
+      tagline: z.string().default(""),
+      company: z.string().default(""),
+      years: z.string().default(""),
+      type: z.string(),
+      role: z.string().default(""),
+      roleGroup: z.string().default(""),
+      industries: z.array(z.string()).default([]),
+      technologies: z.array(z.string()).default([]),
+      tags: z.array(z.string()).default([]),
+      themes: z.array(z.string()).default([]),
+      featured: z.boolean().default(false),
+      metrics: z.string().default(""),
+      links: z.array(z.string()).default([]),
     }),
 });
 
@@ -55,4 +65,23 @@ const testimonials = defineCollection({
     }),
 });
 
-export const collections = { blog, projects, testimonials };
+const experience = defineCollection({
+  loader: glob({
+    base: "./src/content/experience",
+    pattern: "**/*.{md,mdx}",
+    generateId: ({ entry }) => entry.replace(/\.(md|mdx)$/, ""),
+  }),
+  schema: () =>
+    z.object({
+      company: z.string(),
+      title: z.string(),
+      type: z.string().default("employment"),
+      period: z.string().default(""),
+      start: z.string().default(""),
+      environment: z.array(z.string()).default([]),
+      links: z.array(z.string()).default([]),
+      umbrella: z.boolean().default(false),
+    }),
+});
+
+export const collections = { blog, projects, testimonials, experience };

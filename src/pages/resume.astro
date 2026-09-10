@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AskAI from "../components/AskAI.astro";
+import { getCollection, render } from "astro:content";
+import { Content as Extras } from "../data/extras.md";
+
+const raw = await getCollection("experience");
+const umbrellaEntry = raw.find((e) => e.data.umbrella);
+const roles = raw
+  .filter((e) => !e.data.umbrella)
+  .sort((a, b) => (b.data.start || "").localeCompare(a.data.start || ""));
+
+const rendered = await Promise.all(
+  roles.map(async (r) => ({ data: r.data, Content: (await render(r)).Content })),
+);
+const UmbrellaContent = umbrellaEntry ? (await render(umbrellaEntry)).Content : null;
+
+const TYPE_COLORS: Record<string, string> = {
+  employment: "#a56bff",
+  consulting: "#4f8cff",
+  contract: "#4f8cff",
+};
+const TYPE_LABELS: Record<string, string> = {
+  employment: "Employment",
+  consulting: "Consulting",
+  contract: "Contract",
+};
+---
+
+<BaseLayout title="Resume" description="Resume of Alexis Hernández, senior software engineer" showParticles={false}>
+  <section class="resume-page" style="font-family:'Inter',system-ui,sans-serif;background:#0b0f1a;color:#e7eaf3;min-height:100vh;padding:112px 24px 80px;box-sizing:border-box">
+    <div style="max-width:820px;margin:0 auto">
+      <h1 style="font-size:34px;font-weight:800;margin:0 0 8px;letter-spacing:-0.01em">Resume</h1>
+      <p style="font-size:14px;color:#8a93ab;margin:0 0 16px;line-height:1.6">
+        Senior software engineer, 12+ years. I've run my consultancy, Wiringbits, since 2019, so my timeline isn't strictly
+        linear: some periods were dedicated to Wiringbits and my own products, and many client engagements ran in parallel
+        with the roles below. The full, filterable project list lives on the
+        <a href="/projects" style="color:#7ea6ff;text-decoration:none">projects page</a>.
+      </p>
+
+      <AskAI label="Ask an AI about my career:" />
+
+      {umbrellaEntry && UmbrellaContent && (
+        <div style="background:#151d33;border:1px solid #3a4a80;border-left:3px solid #4f8cff;border-radius:12px;padding:20px;margin-bottom:30px">
+          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline">
+            <h2 style="font-size:18px;font-weight:700;margin:0;color:#f0f2f9">{umbrellaEntry.data.title} — {umbrellaEntry.data.company}</h2>
+            <span style="font-size:13px;color:#8a93ab">{umbrellaEntry.data.period}</span>
+          </div>
+          <div class="rendered" style="font-size:14px;color:#c3c9dc;line-height:1.6;margin-top:8px"><UmbrellaContent /></div>
+          <a href="/projects" style="display:inline-block;margin-top:8px;font-size:13px;color:#7ea6ff;text-decoration:none">See the client engagements on the projects page →</a>
+        </div>
+      )}
+
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#5c6580;text-transform:uppercase;margin:0 0 14px">Roles</div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        {rendered.map((r) => {
+          const color = TYPE_COLORS[r.data.type] || "#3a4a80";
+          const Body = r.Content;
+          return (
+            <div style={`border-left:3px solid ${color};padding-left:16px`}>
+              <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;align-items:baseline">
+                <h3 style="font-size:16px;font-weight:700;margin:0;color:#f0f2f9">{r.data.title} — {r.data.company}</h3>
+                <span style="font-size:13px;color:#8a93ab;display:inline-flex;align-items:center;gap:6px">
+                  <span style={`display:inline-block;width:7px;height:7px;border-radius:50%;background:${color}`} />
+                  {TYPE_LABELS[r.data.type] || r.data.type} · {r.data.period}
+                </span>
+              </div>
+              <div class="rendered" style="font-size:14px;color:#a9b0c4;line-height:1.6;margin-top:6px"><Body /></div>
+              {r.data.environment.length > 0 && (
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+                  {r.data.environment.slice(0, 12).map((t) => (
+                    <span style="background:#1c2440;color:#8fa3e0;font-size:11px;padding:3px 8px;border-radius:6px">{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="resume-extras rendered" style="margin-top:38px;font-size:14px;color:#a9b0c4;line-height:1.6"><Extras /></div>
+    </div>
+  </section>
+
+  <style is:global>
+    .resume-page .rendered ul { margin: 6px 0; padding-left: 20px; list-style: disc; }
+    .resume-page .rendered li { margin: 4px 0; }
+    .resume-page .rendered a { color: #7ea6ff; text-decoration: none; }
+    .resume-page .rendered strong { color: #e7eaf3; }
+    .resume-page .resume-extras h2 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #5c6580; text-transform: uppercase; margin: 22px 0 8px; }
+  </style>
+</BaseLayout>

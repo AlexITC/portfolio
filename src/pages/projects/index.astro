@@ -1,74 +1,387 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import AskAI from "../../components/AskAI.astro";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection("projects")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+type Project = {
+  id: string;
+  name: string;
+  tagline: string;
+  company: string;
+  years: string;
+  type: string;
+  role: string;
+  roleGroup: string;
+  themes: string[];
+  industries: string[];
+  technologies: string[];
+  tags: string[];
+  featured: boolean;
+  summary: string;
+  metrics: string;
+  links: string[];
+};
+
+const entries = await getCollection("projects");
+const all: Project[] = entries.map((e) => ({
+  id: e.id,
+  name: e.data.name,
+  tagline: e.data.tagline,
+  company: e.data.company,
+  years: e.data.years,
+  type: e.data.type,
+  role: e.data.role,
+  roleGroup: e.data.roleGroup,
+  themes: e.data.themes,
+  industries: e.data.industries,
+  technologies: e.data.technologies,
+  tags: e.data.tags,
+  featured: e.data.featured,
+  summary: (e.body ?? "").trim(),
+  metrics: e.data.metrics,
+  links: e.data.links,
+}));
+
+const TYPE_LABELS: Record<string, string> = {
+  consulting: "Consulting",
+  employment: "Employment",
+  "open-source": "Open-source",
+  personal: "Personal",
+};
+const TYPE_COLORS: Record<string, string> = {
+  consulting: "#4f8cff",
+  employment: "#a56bff",
+  "open-source": "#f5915a",
+  personal: "#ec6ea6",
+};
+
+// Facets derived from real data
+const themeOrder = [
+  "Legacy restoration & rescue",
+  "Migration",
+  "Cost optimization",
+  "Real-time",
+  "High scale",
+  "Reliability & observability",
+  "Founder",
+  "0-to-1",
+  "Open source",
+];
+const themes = themeOrder.filter((t) => all.some((p) => p.themes.includes(t)));
+const typeKeys = ["consulting", "employment", "open-source", "personal"].filter((t) =>
+  all.some((p) => p.type === t),
 );
+const industries = [...new Set(all.flatMap((p) => p.industries))].sort();
+const roles = [...new Set(all.map((p) => p.roleGroup).filter(Boolean))].sort();
+
+const sorted = [...all].sort((a, b) => {
+  if (a.featured !== b.featured) return a.featured ? -1 : 1;
+  return a.name.localeCompare(b.name);
+});
+
+const norm = (s: string) => s.toLowerCase();
+const hostname = (u: string) => {
+  try {
+    return new URL(u).hostname.replace(/^www\./, "");
+  } catch {
+    return u;
+  }
+};
+const metaLine = (p: Project) =>
+  [p.company, p.years && p.years !== "TBD" ? p.years : ""].filter(Boolean).join(" · ");
+const showToggle = (p: Project) =>
+  !!p.summary && p.summary.length > 150 && p.summary !== p.tagline;
+
 ---
 
-<BaseLayout title={`Project - ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
-  <!-- Project Header -->
-  <section class="px-4 pt-20 pb-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <div class="text-center">
-        <h1 class="mb-4 text-4xl font-bold md:text-6xl">
-          <span class="text-blue-400">Projects</span>
-        </h1>
-        <p class="mb-8 text-xl text-gray-300 md:text-2xl">
-          Thoughts on software engineering, blockchain, and technology
-        </p>
+<BaseLayout title="Projects" description="Projects and engagements by Alexis Hernández / Wiringbits" showParticles={false}>
+  <section class="projects-page" style="font-family:'Inter',system-ui,sans-serif;background:#0b0f1a;color:#e7eaf3;min-height:100vh;padding:112px 24px 80px;box-sizing:border-box">
+    <div style="max-width:1180px;margin:0 auto">
+      <h1 style="font-size:34px;font-weight:800;margin:0 0 8px;letter-spacing:-0.01em">Projects</h1>
+      <p style="font-size:14px;color:#8a93ab;margin:0 0 28px;max-width:640px;line-height:1.5">
+        {all.length} projects across employment, consulting, personal and open-source work. Filter by theme, type,
+        industry, role or keyword to find the work that's relevant to you.
+      </p>
+
+      <AskAI label="Ask an AI about my work:" />
+
+      <input
+        id="search"
+        type="text"
+        placeholder="Search name, technology, keyword..."
+        style="width:100%;box-sizing:border-box;background:#121729;border:1px solid #232b42;border-radius:10px;padding:13px 16px;color:#e7eaf3;font-size:14px;font-family:inherit;margin-bottom:24px;outline:none"
+      />
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#5c6580;margin-bottom:8px">THEME</div>
+        <div id="theme-filters" class="chip-row" style="display:flex;flex-wrap:wrap;gap:8px">
+          {themes.map((t) => <button class="chip" data-facet="themes" data-value={t}>{t}</button>)}
+        </div>
       </div>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#5c6580;margin-bottom:8px">TYPE</div>
+        <div id="type-filters" class="chip-row" style="display:flex;flex-wrap:wrap;gap:8px">
+          {typeKeys.map((t) => (
+            <button class="chip" data-facet="types" data-value={t} data-color={TYPE_COLORS[t]}>{TYPE_LABELS[t]}</button>
+          ))}
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#5c6580;margin-bottom:8px">INDUSTRY</div>
+        <div id="industry-filters" class="chip-row" style="display:flex;flex-wrap:wrap;gap:8px">
+          {industries.map((i) => <button class="chip" data-facet="industries" data-value={i}>{i}</button>)}
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#5c6580;margin-bottom:8px">ROLE</div>
+        <div id="role-filters" class="chip-row" style="display:flex;flex-wrap:wrap;gap:8px">
+          {roles.map((r) => <button class="chip" data-facet="roles" data-value={r}>{r}</button>)}
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 0;border-top:1px solid #1a2136;border-bottom:1px solid #1a2136;margin-bottom:16px">
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:#c3c9dc;cursor:pointer;user-select:none">
+          <input id="featured-only" type="checkbox" style="width:15px;height:15px;accent-color:#f5b942" />
+          Featured only <span style="color:#5c6580">— the projects I'd point to first</span>
+        </label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <button id="clear" style="background:none;border:none;color:#8a93ab;font-size:13px;cursor:pointer;font-family:inherit;text-decoration:underline;display:none">Clear filters</button>
+          <button id="share" style="background:#1c2440;border:1px solid #2b3457;color:#c3c9dc;font-size:13px;font-family:inherit;padding:8px 14px;border-radius:8px;cursor:pointer">Share</button>
+        </div>
+      </div>
+
+      <div id="active-pills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px"></div>
+
+      <div id="count" style="font-size:13px;color:#5c6580;margin-bottom:18px"></div>
+
+      <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px">
+        {sorted.map((p) => {
+          const typeColor = TYPE_COLORS[p.type] || "#3a4a80";
+          const link = p.links[0] || null;
+          return (
+            <div
+              class="project-card"
+              data-type={norm(p.type)}
+              data-role={norm(p.roleGroup)}
+              data-themes={p.themes.map(norm).join("|")}
+              data-industries={p.industries.map(norm).join("|")}
+              data-featured={p.featured ? "1" : "0"}
+              data-text={norm([p.name, p.tagline, p.summary, p.company, p.role, p.technologies.join(" "), p.tags.join(" ")].join(" "))}
+              style={`background:${p.featured ? "#151d33" : "#111726"};border:1px solid ${p.featured ? "#3a4a80" : "#1e2536"};border-left:3px solid ${typeColor};border-radius:12px;padding:20px`}
+            >
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px">
+                <div style="font-size:16px;font-weight:700;line-height:1.3;color:#f0f2f9">{p.name}</div>
+                {p.featured && <span style="color:#f5b942;font-size:16px;flex-shrink:0" title="Featured">★</span>}
+              </div>
+
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+                {p.industries.map((i) => (
+                  <span style="background:#1c2440;color:#7ea6ff;font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px">{i}</span>
+                ))}
+                {p.themes.map((th) => (
+                  <span style="background:#2e2010;color:#f5b942;font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px">{th}</span>
+                ))}
+              </div>
+
+              <div class="card-desc" data-tagline={p.tagline} data-summary={p.summary} style="font-size:13px;color:#a9b0c4;line-height:1.5;margin-bottom:6px">{p.tagline}</div>
+              {showToggle(p) && (
+                <button class="desc-toggle" style="background:none;border:none;color:#7ea6ff;font-size:12px;font-family:inherit;padding:0;margin-bottom:12px;cursor:pointer;text-decoration:underline;display:block">Read more</button>
+              )}
+              {p.metrics && (
+                <div style="font-size:12px;color:#7fd4a8;font-weight:600;margin-bottom:8px">{p.metrics}</div>
+              )}
+
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
+                {p.technologies.map((t) => (
+                  <span style="background:#1c2440;color:#8fa3e0;font-size:11px;padding:4px 9px;border-radius:6px;font-weight:500">{t}</span>
+                ))}
+              </div>
+
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid #1e2536;font-size:12px;color:#5c6580">
+                <span>
+                  <span style={`display:inline-block;width:7px;height:7px;border-radius:50%;background:${typeColor};margin-right:6px`}></span>
+                  {TYPE_LABELS[p.type]}{metaLine(p) ? ` · ${metaLine(p)}` : ""}
+                </span>
+                {link && <a href={link} target="_blank" rel="noopener" style="font-size:12px">{hostname(link)}</a>}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div id="empty" style="display:none;text-align:center;padding:60px 20px;color:#5c6580;font-size:14px">No projects match these filters.</div>
     </div>
   </section>
 
-  <!-- Project Posts -->
-  <section class="bg-gray-800 py-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {
-          posts.map((post) => (
-            <article class="overflow-hidden rounded-lg bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
-              {post.data.heroImage && (
-                <div class="aspect-video overflow-hidden">
-                  <Image
-                    width={720}
-                    height={360}
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-              )}
-              <div class="p-6">
-                <div class="mb-2 text-sm font-semibold text-blue-400">
-                  <FormattedDate date={post.data.pubDate} />
-                </div>
-                <h3 class="mb-3 text-xl font-bold text-gray-100">
-                  <a
-                    href={`/projects/${post.id}/`}
-                    class="transition-colors hover:text-blue-400"
-                  >
-                    {post.data.title}
-                  </a>
-                </h3>
-                {post.data.description && (
-                  <p class="mb-4 text-gray-300">{post.data.description}</p>
-                )}
-                <a
-                  href={`/projects/${post.id}/`}
-                  class="font-semibold text-blue-400 hover:underline"
-                >
-                  Read More →
-                </a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <style is:global>
+    .projects-page a { color: #7ea6ff; text-decoration: none; }
+    .projects-page a:hover { color: #a6c2ff; }
+    .projects-page input::placeholder { color: #5c6580; }
+  </style>
+
+  <script>
+    const TYPE_LABELS = { consulting: "Consulting", employment: "Employment", "open-source": "Open-source", personal: "Personal" };
+
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".project-card"));
+    const search = document.getElementById("search") as HTMLInputElement;
+    const featuredOnly = document.getElementById("featured-only") as HTMLInputElement;
+    const count = document.getElementById("count")!;
+    const empty = document.getElementById("empty")!;
+    const grid = document.getElementById("grid")!;
+    const pillsBox = document.getElementById("active-pills")!;
+    const clearBtn = document.getElementById("clear") as HTMLButtonElement;
+    const shareBtn = document.getElementById("share") as HTMLButtonElement;
+
+    const state = {
+      search: "",
+      themes: new Set<string>(),
+      types: new Set<string>(),
+      industries: new Set<string>(),
+      roles: new Set<string>(),
+      featuredOnly: false,
+    };
+
+    const chipBase = "font-size:12px;font-family:inherit;padding:7px 14px;border-radius:999px;cursor:pointer;border:1px solid;transition:background .15s;";
+    const chipOff = chipBase + "background:#121729;border-color:#232b42;color:#a9b0c4";
+    const chipOn = chipBase + "background:#2b3457;border-color:#4f8cff;color:#e7eaf3;font-weight:600";
+
+    const chips = Array.from(document.querySelectorAll<HTMLElement>(".chip"));
+    function styleChip(btn: HTMLElement) {
+      const facet = btn.dataset.facet as keyof typeof state;
+      const value = btn.dataset.value || "";
+      const on = (state[facet] as Set<string>).has(value);
+      let style = on ? chipOn : chipOff;
+      if (btn.dataset.color) style += `;border-left:9px solid ${btn.dataset.color};padding-left:11px`;
+      btn.setAttribute("style", style);
+    }
+
+    chips.forEach((btn) => {
+      styleChip(btn);
+      btn.addEventListener("click", () => {
+        const facet = btn.dataset.facet as keyof typeof state;
+        const value = btn.dataset.value || "";
+        const set = state[facet] as Set<string>;
+        if (set.has(value)) set.delete(value);
+        else set.add(value);
+        styleChip(btn);
+        apply();
+      });
+    });
+
+    // Read-more toggles
+    document.querySelectorAll<HTMLElement>(".desc-toggle").forEach((btn) => {
+      const desc = btn.previousElementSibling as HTMLElement;
+      btn.addEventListener("click", () => {
+        const showingFull = btn.textContent === "Show less";
+        desc.textContent = showingFull ? desc.dataset.tagline || "" : desc.dataset.summary || "";
+        btn.textContent = showingFull ? "Read more" : "Show less";
+      });
+    });
+
+    // URL <-> state
+    function readUrl() {
+      const p = new URLSearchParams(window.location.search);
+      state.search = p.get("q") || "";
+      state.themes = new Set((p.get("theme") || "").split(",").filter(Boolean));
+      state.types = new Set((p.get("type") || "").split(",").filter(Boolean));
+      state.industries = new Set((p.get("industry") || "").split(",").filter(Boolean));
+      state.roles = new Set((p.get("role") || "").split(",").filter(Boolean));
+      state.featuredOnly = p.get("featured") === "1";
+      search.value = state.search;
+      featuredOnly.checked = state.featuredOnly;
+      chips.forEach(styleChip);
+    }
+    function syncUrl() {
+      const p = new URLSearchParams();
+      if (state.search) p.set("q", state.search);
+      if (state.themes.size) p.set("theme", [...state.themes].join(","));
+      if (state.types.size) p.set("type", [...state.types].join(","));
+      if (state.industries.size) p.set("industry", [...state.industries].join(","));
+      if (state.roles.size) p.set("role", [...state.roles].join(","));
+      if (state.featuredOnly) p.set("featured", "1");
+      const qs = p.toString();
+      window.history.replaceState(null, "", window.location.pathname + (qs ? "?" + qs : ""));
+    }
+
+    function hasActive() {
+      return !!(state.search || state.themes.size || state.types.size || state.industries.size || state.roles.size || state.featuredOnly);
+    }
+
+    function renderPills() {
+      const pills: { label: string; remove: () => void }[] = [];
+      const add = (facet: "themes" | "types" | "industries" | "roles", label: (v: string) => string) =>
+        (state[facet] as Set<string>).forEach((v) =>
+          pills.push({ label: label(v), remove: () => { (state[facet] as Set<string>).delete(v); chips.forEach(styleChip); apply(); } }));
+      add("themes", (v) => v);
+      add("types", (v) => TYPE_LABELS[v] || v);
+      add("industries", (v) => v);
+      add("roles", (v) => v);
+      if (state.featuredOnly) pills.push({ label: "Featured only", remove: () => { state.featuredOnly = false; featuredOnly.checked = false; apply(); } });
+      if (state.search) pills.push({ label: `"${state.search}"`, remove: () => { state.search = ""; search.value = ""; apply(); } });
+
+      pillsBox.innerHTML = "";
+      pills.forEach((pl) => {
+        const span = document.createElement("span");
+        span.setAttribute("style", "display:inline-flex;align-items:center;gap:6px;background:#1c2440;border:1px solid #2b3457;color:#c3c9dc;font-size:12px;padding:6px 6px 6px 12px;border-radius:999px");
+        span.textContent = pl.label;
+        const x = document.createElement("button");
+        x.setAttribute("style", "background:#2b3457;border:none;color:#c3c9dc;width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;font-family:inherit");
+        x.textContent = "×";
+        x.addEventListener("click", pl.remove);
+        span.appendChild(x);
+        pillsBox.appendChild(span);
+      });
+    }
+
+    function apply() {
+      state.search = search.value;
+      state.featuredOnly = featuredOnly.checked;
+      const q = state.search.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => {
+        const inds = (card.dataset.industries || "").split("|");
+        const themesArr = (card.dataset.themes || "").split("|");
+        const type = card.dataset.type || "";
+        const role = card.dataset.role || "";
+        const text = card.dataset.text || "";
+        const feat = card.dataset.featured === "1";
+        const ok =
+          (state.industries.size === 0 || inds.some((i) => state.industries.has(i))) &&
+          (state.types.size === 0 || state.types.has(type)) &&
+          (state.roles.size === 0 || state.roles.has(role)) &&
+          (state.themes.size === 0 || themesArr.some((t) => state.themes.has(t))) &&
+          (!q || text.includes(q)) &&
+          (!state.featuredOnly || feat);
+        card.style.display = ok ? "" : "none";
+        if (ok) visible++;
+      });
+      count.textContent = `Showing ${visible} of ${cards.length}`;
+      empty.style.display = visible === 0 ? "block" : "none";
+      grid.style.display = visible === 0 ? "none" : "grid";
+      clearBtn.style.display = hasActive() ? "inline" : "none";
+      renderPills();
+      syncUrl();
+    }
+
+    search.addEventListener("input", apply);
+    featuredOnly.addEventListener("change", apply);
+    clearBtn.addEventListener("click", () => {
+      state.themes.clear(); state.types.clear(); state.industries.clear(); state.roles.clear();
+      state.search = ""; state.featuredOnly = false;
+      search.value = ""; featuredOnly.checked = false;
+      chips.forEach(styleChip);
+      apply();
+    });
+    shareBtn.addEventListener("click", () => {
+      try { navigator.clipboard.writeText(window.location.href); } catch (e) {}
+      shareBtn.textContent = "Copied!";
+      setTimeout(() => (shareBtn.textContent = "Share"), 1500);
+    });
+
+    readUrl();
+    apply();
+  </script>
 </BaseLayout>

@@ -9,7 +9,7 @@ const posts = (await getCollection("blog")).sort(() => Math.random() - 0.5);
 
 // Get recent projects for featured section
 const projects = (await getCollection("projects"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .filter((p) => p.data.featured)
   .slice(0, 3);
 
 // Get testimonials
@@ -42,7 +42,7 @@ import ProfileImage from "../assets/profile.jpg";
         </div>
         <div class="mx-auto max-w-4xl text-lg leading-relaxed text-gray-300">
           <p class="mb-6">
-            I have been programming for 18+ years.
+            I have 12+ years of professional software engineering experience.
             <br />
             I got into this the hard way -Trying to reverse engineer the firmware
             from my Sony Ericsson- which led me to learn Assembler by myself while
