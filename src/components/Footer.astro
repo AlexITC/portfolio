@@ -83,6 +83,16 @@ const today = new Date();
             >
           </li>
           <li>
+            <a href="/projects" class="transition-colors hover:text-blue-400"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="/resume" class="transition-colors hover:text-blue-400"
+              >Resume</a
+            >
+          </li>
+          <li>
             <a
               href="/testimonials"
               class="transition-colors hover:text-blue-400">Testimonials</a
@@ -213,6 +223,11 @@ const today = new Date();
       <p>{today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
       <div class="mt-3 space-x-4 md:mt-0">
         <a href="/rss.xml" class="hover:text-blue-400">RSS</a>
+        <a
+          href="/llms.txt"
+          title="Plain-text resume and project list, made for AI assistants"
+          class="hover:text-blue-400">llms.txt</a
+        >
       </div>
     </div>
   </div>
