@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Fintech", "DevTools"]
 technologies: ["Smithy", "Scala", "TypeScript", "Go"]
 tags: ["paved-road", "data-modeling"]
-themes: []
+themes: ["0-to-1"]
 featured: true
 metrics: ""
 links: []

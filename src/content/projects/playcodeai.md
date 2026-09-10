@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["AI"]
 technologies: ["AI", "web"]
 tags: ["solo", "killed", "conference-talk"]
-themes: []
+themes: ["Founder", "0-to-1"]
 featured: false
 metrics: ""
 links: []

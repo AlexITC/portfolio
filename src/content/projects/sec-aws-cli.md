@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Security", "DevTools"]
 technologies: ["Rust"]
 tags: ["solo-build", "compliance"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

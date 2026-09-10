@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["Security", "Bots"]
 technologies: ["Scala (confirm)"]
 tags: ["open-source", "bot", "security"]
-themes: ["Open source"]
+themes: ["Open source", "0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/wiringbits/discord-scammer-detector-bot"]

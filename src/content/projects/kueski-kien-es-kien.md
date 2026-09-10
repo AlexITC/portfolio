@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Fintech", "Data"]
 technologies: ["Scala", "MySQL", "PostgreSQL"]
 tags: ["auditability"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["NFT", "Crypto"]
 technologies: ["TypeScript", "Express", "Node.js", "React", "Rust", "Solana"]
 tags: ["cost-optimization"]
-themes: ["Cost optimization"]
+themes: ["Cost optimization", "Migration"]
 featured: false
 metrics: ""
 links: ["https://github.com/metaplex-foundation/sugar/pull/433"]

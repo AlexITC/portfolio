@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Fintech", "Data"]
 technologies: ["Scala", "Apache Spark", "Hive", "Hadoop", "Hue", "Yarn", "Oozie"]
 tags: ["data-pipeline", "dsl"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

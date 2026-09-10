@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["AgTech", "Data"]
 technologies: ["Scala", "Play", "React", "Postgres", "AWS", "Ansible"]
 tags: ["lead", "killed", "traceability"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

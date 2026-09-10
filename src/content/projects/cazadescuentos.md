@@ -2,7 +2,7 @@
 name: "cazadescuentos"
 tagline: "A startup attempt (like codepreview.io): scrapes retailers to track discounts."
 company: "Personal"
-years: "~2020"
+years: "2020"
 type: "personal"
 role: "Founder / solo builder."
 roleGroup: "Founder"

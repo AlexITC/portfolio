@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["Security", "Data"]
 technologies: ["Kotlin", "Spring Boot", "Postgres", "JPA", "S3", "SQS", "Testcontainers"]
 tags: ["event-driven", "lead", "microservice"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

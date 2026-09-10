@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["DevTools"]
 technologies: ["Scala", "WartRemover"]
 tags: ["open-source", "linting", "typelevel"]
-themes: ["Open source"]
+themes: ["Open source", "0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/wiringbits/wiringbits-scala-newbie-warts"]

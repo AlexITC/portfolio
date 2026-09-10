@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["AI"]
 technologies: ["Scala", "Twilio", "Gemini Live API", "fs2"]
 tags: ["ai-agents", "real-time", "voice"]
-themes: ["Real-time"]
+themes: ["Real-time", "0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/AlexITC/twimini-bot"]

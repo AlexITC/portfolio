@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["DevTools"]
 technologies: ["JVM"]
 tags: ["legacy-migration", "rescue", "conference-talk"]
-themes: ["Legacy restoration & rescue", "Migration"]
+themes: ["Legacy restoration & rescue"]
 featured: false
 metrics: ""
 links: ["https://www.youtube.com/watch?v=SJxEXAkxD3I"]

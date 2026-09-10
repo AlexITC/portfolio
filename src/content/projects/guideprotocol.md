@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["EdTech", "Marketplace"]
 technologies: ["Java", "Spring Boot", "React", "TypeScript", "AWS"]
 tags: ["lead"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

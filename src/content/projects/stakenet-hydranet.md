@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["Crypto", "DeFi", "Fintech"]
 technologies: ["Scala", "Play", "Angular", "TypeScript", "Postgres", "DigitalOcean", "Bitcoin", "Ethereum", "Arbitrum", "geth", "bitcoind", "Ansible"]
 tags: ["original-author", "lead", "real-time"]
-themes: ["Real-time"]
+themes: ["Real-time", "0-to-1"]
 featured: true
 metrics: ""
 links: ["https://hydranet.ai/", "https://github.com/AlexITC/stakenet-orderbook", "https://github.com/wiringbits/block-explorer", "https://github.com/wiringbits/eth-indexer"]

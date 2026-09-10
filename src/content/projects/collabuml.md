@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["DevTools"]
 technologies: ["TBD"]
 tags: ["open-source", "killed"]
-themes: ["Open source"]
+themes: ["Open source", "0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/AlexITC/collabuml"]

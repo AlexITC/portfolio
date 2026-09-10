@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["IoT"]
 technologies: ["Scala", "Java", "Akka", "Play", "MySQL", "Cassandra", "ElasticSearch", "MongoDB", "Kafka", "AWS", "LwM2M/CoAP", "CRDT"]
 tags: ["multi-region", "distributed"]
-themes: []
+themes: ["High scale", "Reliability & observability"]
 featured: false
 metrics: ""
 links: []

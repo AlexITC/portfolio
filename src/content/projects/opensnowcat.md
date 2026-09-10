@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Data", "DevTools"]
 technologies: ["Scala"]
 tags: ["open-source", "data-pipeline", "fork"]
-themes: ["Open source"]
+themes: ["Open source", "Legacy restoration & rescue"]
 featured: true
 metrics: ""
 links: ["https://github.com/opensnowcat", "https://github.com/opensnowcat/opensnowcat-collector/commits?author=AlexITC", "https://github.com/opensnowcat/opensnowcat-enrich/commits?author=AlexITC"]

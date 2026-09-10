@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["Crypto"]
 technologies: ["TBD"]
 tags: ["open-source", "dead"]
-themes: ["Open source"]
+themes: ["Open source", "0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/AlexITC/crypto-coin-alerts", "https://cryptocoinalerts.net/"]

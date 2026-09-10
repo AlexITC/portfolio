@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["Gov", "Data"]
 technologies: ["Scala", "Play", "React", "Postgres", "Ansible"]
 tags: ["scraping", "lead"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

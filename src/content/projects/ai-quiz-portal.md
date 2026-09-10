@@ -9,7 +9,7 @@ roleGroup: "Manager"
 industries: ["EdTech", "AI"]
 technologies: ["React", "TypeScript"]
 tags: ["manager", "live"]
-themes: []
+themes: ["Legacy restoration & rescue"]
 featured: false
 metrics: ""
 links: []

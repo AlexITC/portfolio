@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["Identity", "Crypto"]
 technologies: ["Scala", "Scala.js", "Bitcoin", "Cardano", "gRPC", "browser extensions"]
 tags: ["architect", "protocol-design"]
-themes: []
+themes: ["0-to-1"]
 featured: true
 metrics: ""
 links: []

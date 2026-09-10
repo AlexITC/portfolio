@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["Fintech", "DevTools"]
 technologies: ["Scala", "build plugins"]
 tags: ["paved-road"]
-themes: []
+themes: ["Reliability & observability"]
 featured: false
 metrics: ""
 links: []

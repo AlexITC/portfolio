@@ -340,6 +340,10 @@ const showToggle = (p: Project) =>
       state.search = search.value;
       state.featuredOnly = featuredOnly.checked;
       const q = state.search.trim().toLowerCase();
+      // card data-* attributes are lowercased, so compare against lowercased selections
+      const selIndustries = new Set([...state.industries].map((v) => v.toLowerCase()));
+      const selThemes = new Set([...state.themes].map((v) => v.toLowerCase()));
+      const selRoles = new Set([...state.roles].map((v) => v.toLowerCase()));
       let visible = 0;
       cards.forEach((card) => {
         const inds = (card.dataset.industries || "").split("|");
@@ -349,10 +353,10 @@ const showToggle = (p: Project) =>
         const text = card.dataset.text || "";
         const feat = card.dataset.featured === "1";
         const ok =
-          (state.industries.size === 0 || inds.some((i) => state.industries.has(i))) &&
+          (selIndustries.size === 0 || inds.some((i) => selIndustries.has(i))) &&
           (state.types.size === 0 || state.types.has(type)) &&
-          (state.roles.size === 0 || state.roles.has(role)) &&
-          (state.themes.size === 0 || themesArr.some((t) => state.themes.has(t))) &&
+          (selRoles.size === 0 || selRoles.has(role)) &&
+          (selThemes.size === 0 || themesArr.some((t) => selThemes.has(t))) &&
           (!q || text.includes(q)) &&
           (!state.featuredOnly || feat);
         card.style.display = ok ? "" : "none";

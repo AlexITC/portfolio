@@ -9,7 +9,7 @@ roleGroup: "Lead/Architect"
 industries: ["Crypto", "Identity", "Data"]
 technologies: ["Scala", "Bitcoin", "Cardano"]
 tags: ["architect", "indexer"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: ["https://github.com/input-output-hk/atala-prism", "https://youtu.be/8AbgzvOeb6w"]

@@ -9,7 +9,7 @@ roleGroup: "Manager"
 industries: ["Fitness", "SaaS"]
 technologies: ["TypeScript", "React", "Tailwind"]
 tags: ["manager", "live"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: ["https://calenda.fit/"]

@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Fintech", "AI", "Data"]
 technologies: ["Scala", "Postgres", "AWS Textract", "Telegram bot"]
 tags: ["solo", "in-progress"]
-themes: []
+themes: ["0-to-1"]
 featured: false
 metrics: ""
 links: []

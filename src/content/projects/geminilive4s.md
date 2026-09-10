@@ -9,7 +9,7 @@ roleGroup: "Author/Maintainer"
 industries: ["AI", "DevTools"]
 technologies: ["Scala", "fs2", "cats-effect", "Gemini Live API"]
 tags: ["open-source", "ai-agents", "real-time"]
-themes: ["Real-time", "Open source"]
+themes: ["Open source", "Real-time", "0-to-1"]
 featured: true
 metrics: ""
 links: ["https://github.com/AlexITC/geminilive4s"]

@@ -9,7 +9,7 @@ roleGroup: "Manager"
 industries: ["Vet/Healthcare", "DevTools"]
 technologies: ["TypeScript", "Vue", "Scala", "Cask"]
 tags: ["manager"]
-themes: []
+themes: ["Legacy restoration & rescue"]
 featured: false
 metrics: ""
 links: []

@@ -9,7 +9,7 @@ roleGroup: "Engineer/IC"
 industries: ["Travel"]
 technologies: ["Scala", "Play", "MongoDB", "React", "Ansible"]
 tags: ["rescue", "paused"]
-themes: ["Legacy restoration & rescue"]
+themes: ["Legacy restoration & rescue", "Migration"]
 featured: false
 metrics: ""
 links: []
