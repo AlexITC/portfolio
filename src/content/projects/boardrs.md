@@ -1,8 +1,8 @@
 ---
 name: "Boardrs"
-tagline: "Rescued a legacy snowboarding-trip booking app (deploys + SSR)."
+tagline: "Rescued a legacy snowboarding-trip booking app (deploys + SSR)"
 company: "Boardrs"
-years: "TBD"
+years: "2022"
 type: "consulting"
 role: "Developer."
 roleGroup: "Engineer/IC"
@@ -15,4 +15,4 @@ metrics: ""
 links: []
 ---
 
-Legacy snowboarding-trip booking web app. Fixed multiple setup issues, including deploys, and configured SSR. (Public site is paused; describe the software rather than linking it.)
+Legacy snowboarding-trip booking web app. Fixed multiple setup issues, including deploys, and configured SSR.

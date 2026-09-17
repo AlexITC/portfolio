@@ -2,7 +2,7 @@
 name: "CalendaFit"
 tagline: "SaaS for gym memberships and classes; led the frontend + admin/staff portal."
 company: "CalendaFit"
-years: "TBD"
+years: "2024-2026"
 type: "consulting"
 role: "Manager (led team)."
 roleGroup: "Manager"
@@ -15,4 +15,4 @@ metrics: ""
 links: ["https://calenda.fit/"]
 ---
 
-SaaS for managing gym memberships and workout classes. His team built most of the frontend app plus the admin and staff portal; backend handled in-house. Live in production; demo available on request.
+SaaS for managing gym memberships and workout classes. His team built most of the frontend app plus the admin and staff portal (backend handled in-house); demo available on request.
