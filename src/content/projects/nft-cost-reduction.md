@@ -11,8 +11,8 @@ technologies: ["TypeScript", "Express", "Node.js", "React", "Rust", "Solana"]
 tags: ["cost-optimization"]
 themes: ["Cost optimization", "Migration"]
 featured: false
-metrics: ""
+metrics: "~$70k/year → ~$3k/year operating cost."
 links: ["https://github.com/metaplex-foundation/sugar/pull/433"]
 ---
 
-Reduced the operational cost of a website managing NFTs from ~$70k/year to ~$3k/year. The customer had been paying for a costly custom third-party API that drove most of the cost; refactored the code to migrate to cheaper options, which required contributing changes upstream to metaplex/sugar to unblock the migration.
+Reduced the operational cost of a website managing NFTs from ~$70k/year to ~$3k/year. The customer had been paying for a costly custom third-party API that drove most of the cost; refactored the code to migrate to cheaper options. Separately, while working on the same project, contributed changes upstream to metaplex/sugar.

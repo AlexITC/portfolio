@@ -1,10 +1,10 @@
 ---
 name: "Ailytic"
-tagline: "Manufacturing-scheduling web app; frontend + Java backend."
+tagline: "Manufacturing-scheduling web app"
 company: "Ailytic"
-years: "TBD"
+years: "2017"
 type: "consulting"
-role: "Software engineer (gig, a few months)."
+role: "Software engineer."
 roleGroup: "Engineer/IC"
 industries: ["Manufacturing"]
 technologies: ["Java", "jQWidgets", "MySQL"]

@@ -15,4 +15,4 @@ metrics: ""
 links: ["https://hydranet.ai/", "https://github.com/AlexITC/stakenet-orderbook", "https://github.com/wiringbits/block-explorer", "https://github.com/wiringbits/eth-indexer"]
 ---
 
-Multiple components: the DEX order book (core of the Hydranet DEX, on the Lightning Network), the Bitcoin block explorer (online 5+ years), an Ethereum explorer, and a coin-swap app (Bitcoin-like coin → Ethereum token).
+Multiple components: the DEX order book (core of the Hydranet DEX, on the Lightning Network), the Bitcoin block explorer (stayed online 5+ years), an Ethereum explorer, and a coin-swap app (Bitcoin-like coin → Ethereum token).
