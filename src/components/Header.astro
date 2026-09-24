@@ -22,6 +22,63 @@ import { SITE_TITLE } from "../consts";
         >
         <a href="/about" class="transition-colors hover:text-blue-400">About</a>
       </div>
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="text-gray-300 transition-colors hover:text-blue-400 md:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
+    </div>
+    <div
+      id="mobile-menu"
+      class="hidden flex-col space-y-1 pb-4 text-gray-300 md:hidden"
+    >
+      <a href="/" class="block py-1 transition-colors hover:text-blue-400">Home</a>
+      <a href="/blog" class="block py-1 transition-colors hover:text-blue-400"
+        >Blog</a
+      >
+      <a href="/projects" class="block py-1 transition-colors hover:text-blue-400"
+        >Projects</a
+      >
+      <a href="/resume" class="block py-1 transition-colors hover:text-blue-400"
+        >Resume</a
+      >
+      <a href="/#talks" class="block py-1 transition-colors hover:text-blue-400"
+        >Talks</a
+      >
+      <a
+        href="/testimonials"
+        class="block py-1 transition-colors hover:text-blue-400">Testimonials</a
+      >
+      <a href="/about" class="block py-1 transition-colors hover:text-blue-400"
+        >About</a
+      >
     </div>
   </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    menu?.classList.toggle("flex", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+</script>
