@@ -5,7 +5,10 @@ import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 
 type BlogData = CollectionEntry<"blog">["data"];
-type PageProps = BlogData & { relatedPosts?: CollectionEntry<"blog">[] };
+type PageProps = BlogData & {
+  relatedPosts?: CollectionEntry<"blog">[];
+  showNewsletter?: boolean;
+};
 
 const {
   title,
@@ -14,6 +17,7 @@ const {
   updatedDate,
   heroImage,
   relatedPosts = [],
+  showNewsletter = true,
 } = Astro.props as PageProps;
 ---
 
@@ -74,6 +78,18 @@ const {
       </article>
     </div>
   </section>
+
+  {/* Newsletter popup (EmailOctopus) — renders its own fixed overlay */}
+  {
+    showNewsletter && (
+      <script
+        is:inline
+        async
+        src="https://eomail5.com/form/454d0a9c-ce28-11f1-8e63-b144ab864ef8.js"
+        data-form="454d0a9c-ce28-11f1-8e63-b144ab864ef8"
+      />
+    )
+  }
 
   <!-- Related Posts (Swiper) -->
   {
