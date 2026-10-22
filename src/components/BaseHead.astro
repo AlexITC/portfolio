@@ -5,6 +5,7 @@ import "../styles/global.css";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../assets/profile.jpg";
 import { SITE_TITLE } from "../consts";
+import PostHog from "./PostHog.astro";
 
 interface Props {
   title: string;
@@ -67,3 +68,6 @@ const absoluteImageUrl = new URL(
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
+
+<!-- Analytics -->
+<PostHog />
