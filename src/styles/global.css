@@ -210,6 +210,34 @@
   height: auto;
 }
 
+.prose table {
+  display: block;
+  min-width: 100%;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose thead th {
+  color: #f3f4f6;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid #374151;
+}
+
+.prose th,
+.prose td {
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #374151;
+  color: #d1d5db;
+  vertical-align: top;
+}
+
+.prose tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
 /* Particle canvas responsive */
 #particleCanvas {
   opacity: 0.6;
