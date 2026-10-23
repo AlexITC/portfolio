@@ -1,6 +1,6 @@
-# Wiringbits website & blog
+# Alexis' website & blog
 
-This is the website & blog for [Wiringbits](https://wiringbits.net).
+This is the website & blog for [Alexis' blog](https://alexitc.com).
 
 It is powered by [Astro](https://astro.build/).
 
