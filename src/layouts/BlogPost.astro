@@ -8,6 +8,7 @@ type BlogData = CollectionEntry<"blog">["data"];
 type PageProps = BlogData & {
   relatedPosts?: CollectionEntry<"blog">[];
   showNewsletter?: boolean;
+  sourcePath?: string;
 };
 
 const {
@@ -18,7 +19,12 @@ const {
   heroImage,
   relatedPosts = [],
   showNewsletter = true,
+  sourcePath,
 } = Astro.props as PageProps;
+
+const sourceUrl = sourcePath
+  ? `https://github.com/AlexITC/portfolio/blob/main/${sourcePath}`
+  : undefined;
 ---
 
 <BaseLayout
@@ -76,6 +82,22 @@ const {
       <article class="prose prose-lg prose-invert blog-content max-w-none">
         <slot />
       </article>
+      {
+        sourceUrl && (
+          <p class="mt-10 border-t border-gray-700 pt-6 text-sm text-gray-500">
+            Found a mistake or want to suggest an edit?{" "}
+            <a
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-400 hover:underline"
+            >
+              View the source of this post on GitHub
+            </a>
+            .
+          </p>
+        )
+      }
     </div>
   </section>
 

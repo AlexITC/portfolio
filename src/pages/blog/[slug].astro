@@ -20,6 +20,6 @@ const pool = allPosts.filter((p) => p.id !== post.id);
 const relatedPosts = [...pool].sort(() => Math.random() - 0.5);
 ---
 
-<BlogPost {...post.data} relatedPosts={relatedPosts}>
+<BlogPost {...post.data} relatedPosts={relatedPosts} sourcePath={post.filePath}>
   <Content />
 </BlogPost>
