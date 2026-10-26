@@ -28,6 +28,93 @@ Vote to see how everyone else's CI compares.
 > For reference, this project now sits in the 2–5m bucket.
 
 
+## Try it on your own CI
+
+I did a lot of this with an AI coding agent, so here's a prompt you can point one at your own repo to find where your CI time actually goes. It runs for a few minutes and can even open draft PRs, so kick it off now and read on.
+
+<details style="margin:2rem 0;border:1px solid #374151;border-radius:0.5rem;background:#1f2937;overflow:hidden">
+<summary style="cursor:pointer;padding:0.9rem 1.1rem;font-weight:600;color:#f3f4f6">Show the prompt</summary>
+<div style="padding:0 1.1rem 1.1rem">
+<button type="button" data-prompt-copy="ci-prompt-src" aria-label="Copy the prompt to your clipboard" style="display:inline-flex;align-items:center;gap:7px;margin:0.25rem 0 0.9rem;font-size:0.85rem;background:#2563eb;border:0;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:inherit">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+<span data-label aria-live="polite">Copy prompt</span>
+</button>
+<noscript><p style="font-size:0.85rem;color:#9ca3af">Enable JavaScript to view and copy the prompt, or read it in the <a href="https://github.com/AlexITC/portfolio/blob/main/src/content/blog/2026-10-23-from-27-minutes-to-4-cutting-ci-build-time-by-85-percent.md">post source</a>.</p></noscript>
+<pre style="margin:0;max-height:24rem;overflow:auto"><code id="ci-prompt-code" style="white-space:pre-wrap"></code></pre>
+</div>
+</details>
+
+<script type="text/plain" id="ci-prompt-src">I want to cut my repository's CI build time without dropping test coverage or adding paid infrastructure. Use a real, public project as a worked reference, then apply the thinking to MY repo.
+
+Reference: AlexITC/expense-tracker took its CI from ~27 min to ~4 min, one measured change at a time. Study these diffs if you can browse them; otherwise use the descriptions:
+- Scope tests/builds to the changed paths: https://github.com/AlexITC/expense-tracker/pull/28
+- Share one database container across the suite instead of one per test: https://github.com/AlexITC/expense-tracker/pull/22
+- Boot one app per test-suite instead of per test: https://github.com/AlexITC/expense-tracker/pull/27
+- Reuse a warm build server instead of re-booting it per step: https://github.com/AlexITC/expense-tracker/pull/25
+- Cache dependencies: https://github.com/AlexITC/expense-tracker/pull/30
+- Cache generated code, keyed on what actually invalidates it: https://github.com/AlexITC/expense-tracker/pull/31
+- Cache compiled output; main saves, PRs only restore: https://github.com/AlexITC/expense-tracker/pull/40
+- Run tests in parallel, scaled to the runner's cores: https://github.com/AlexITC/expense-tracker/pull/37
+- Use cheap but real password hashing in tests: https://github.com/AlexITC/expense-tracker/pull/38
+- Render the test-results report only when a build fails: https://github.com/AlexITC/expense-tracker/pull/39
+
+Then:
+1. Find my CI config and build tool. Summarize each job and step, and if you can, its duration from recent runs.
+2. For each technique above, decide whether it applies to my stack and where. Adapt the idea to my tools; do not copy the Scala/sbt specifics.
+3. Give me a list ranked by expected saving, each as one small, independent change with its risk, that I can measure on its own.
+
+If you can open pull requests and read CI results (for example via the GitHub CLI), run the candidates as experiments instead of only proposing them:
+- Record a baseline first: the current CI time on main from a recent run, ideally a warm one.
+- For each top candidate, create one small branch off main that makes only that change, and open it as a draft PR. Do not merge anything.
+- Compare each PR against the baseline. CI timing is noisy, so if a result is close, re-run before trusting it, and compare the same thing (test step, or full build) rather than mixing scopes.
+- Some changes cannot be isolated because they depend on others (parallelism needs test isolation first). Measure those together and say so.
+- Keep it to a handful at a time so you do not burn CI minutes.
+- Monitor the runs, and when they finish report a table: change, before, after, saving, confidence. Then tell me which are worth keeping, and clean up the throwaway branches.
+
+Do not apply anything blindly. One change at a time, measured on real CI before keeping it.</script>
+
+<script>
+  (function () {
+    var src = document.getElementById("ci-prompt-src");
+    if (!src) return;
+    var text = src.textContent;
+    var code = document.getElementById("ci-prompt-code");
+    if (code) code.textContent = text;
+    var btn = document.querySelector('[data-prompt-copy="ci-prompt-src"]');
+    if (!btn) return;
+    var label = btn.querySelector("[data-label]");
+    btn.addEventListener("click", async function () {
+      var ok = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      } catch (e) {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+        } catch (e2) {
+          ok = false;
+        }
+      }
+      if (label) {
+        var prev = label.textContent;
+        label.textContent = ok ? "Copied" : "Press Ctrl+C to copy";
+        setTimeout(function () {
+          label.textContent = prev;
+        }, 1500);
+      }
+    });
+  })();
+</script>
+
+
 ## Initial state
 
 Let's start by analyzing the [project](https://github.com/AlexITC/expense-tracker)'s state:
