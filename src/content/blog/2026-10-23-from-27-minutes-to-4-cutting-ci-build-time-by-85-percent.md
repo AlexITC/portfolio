@@ -14,19 +14,13 @@ I made a list of assumptions on where I could save time and tested each one inde
 While the project I'm working on is written in Scala, the techniques are generic. The post goes over what I did (with the relevant PRs linked).
 
 
-## How long is your CI?
+## What's the CI timing from others?
 
-Vote to see how everyone else's CI compares.
+There was a live poll lasting for ~1 week where visitors could vote, these are the results:
 
-<iframe
-  src="https://livepolls.com/p/how-long-does-your-ci-take-5z1i?embed=true&theme=dark"
-  title="How long does your CI take?"
-  loading="lazy"
-  style="width:100%;max-width:640px;height:660px;border:1px solid #374151;border-radius:0.5rem;display:block;margin:2rem auto;"
-></iframe>
+![Poll results](../../assets/from-27-minutes-to-4-cutting-ci-build-time-by-85-percent/poll-results.png)
 
 > For reference, this project now sits in the 2–5m bucket.
-
 
 ## Try it on your own CI
 
