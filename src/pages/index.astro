@@ -85,9 +85,9 @@ import ProfileImage from "../assets/profile.jpg";
           {
             posts.map((post) => (
               <div class="swiper-slide">
-                <article class="h-full overflow-hidden rounded-lg bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
+                <article class="h-full overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
                   {post.data.heroImage && (
-                    <div class="aspect-video overflow-hidden">
+                    <div class="aspect-video overflow-hidden border-b border-gray-700">
                       <Image
                         width={720}
                         height={360}
@@ -134,6 +134,13 @@ import ProfileImage from "../assets/profile.jpg";
       </div>
     </div>
   </section>
+
+  <style is:global>
+    /* Equalize blog card heights in the carousel (clones included) */
+    .blogposts-swiper .swiper-slide {
+      height: auto;
+    }
+  </style>
 
   <!-- Projects Section -->
   <!-- TODO

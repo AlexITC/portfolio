@@ -31,9 +31,9 @@ const posts = (await getCollection("blog")).sort(
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {
           posts.map((post) => (
-            <article class="overflow-hidden rounded-lg bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
+            <article class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-lg transition-shadow hover:shadow-xl">
               {post.data.heroImage && (
-                <div class="aspect-video overflow-hidden">
+                <div class="aspect-video overflow-hidden border-b border-gray-700">
                   <Image
                     width={720}
                     height={360}
